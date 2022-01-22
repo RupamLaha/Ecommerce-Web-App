@@ -1,1 +1,27 @@
-<p>user-registration works!</p>
+<br>
+<br>
+
+<div class="full">
+    <h2>Register</h2>
+
+    <!-- <form onsubmit="return validate()" action="1.html"> -->
+        <div class="container">
+
+            <label for="email"><b>Email</b></label><br>
+            <input #emailI type="email" id="email" placeholder="Email" name="email" required><br>
+
+            <label for="firstname"><b>Name</b></label><br>
+            <input #name type="text" id="firstname" placeholder="First name" name="firstname" required><br>
+            <!-- <p id="alertU"></p><br> -->
+
+            <label for="password"><b>Password</b></label><br>
+            <input #pass type="text" id="password" placeholder="Password" name="password" type="password" required><br>
+            <!-- <p id="alertP"></p><br> -->
+
+            <p>Already have an account? <a routerLink="/login">Login</a></p>
+
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+        </div>
+    <!-- </form> -->
+</div>
