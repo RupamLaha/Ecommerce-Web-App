@@ -7,6 +7,7 @@ import { UserLoginComponent } from './UserComponents/user-login/user-login.compo
 import { UserRegistrationComponent } from './UserComponents/user-registration/user-registration.component';
 import { SellerLoginComponent } from './SellerComponents/seller-login/seller-login.component';
 import { SellerRegistrationComponent } from './SellerComponents/seller-registration/seller-registration.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SellerRegistrationComponent } from './SellerComponents/seller-registrat
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
