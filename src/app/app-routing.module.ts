@@ -3,7 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserCartComponent } from './UserComponents/user-cart/user-cart.component';
 import { UserHomeComponent } from './UserComponents/user-home/user-home.component';
 import { UserLoginComponent } from './UserComponents/user-login/user-login.component';
+import { UserOrderHistoryComponent } from './UserComponents/user-order-history/user-order-history.component';
 import { UserProductDetailComponent } from './UserComponents/user-product-detail/user-product-detail.component';
+import { UserProfileComponent } from './UserComponents/user-profile/user-profile.component';
 import { UserRegistrationComponent } from './UserComponents/user-registration/user-registration.component';
 import { UserWishlistComponent } from './UserComponents/user-wishlist/user-wishlist.component';
 
@@ -13,7 +15,9 @@ const routes: Routes = [
   {path: 'user-home', component: UserHomeComponent},
   {path: 'user-product-detail', component: UserProductDetailComponent},
   {path: 'user-wishlist', component: UserWishlistComponent},
-  {path: 'user-cart', component: UserCartComponent}
+  {path: 'user-cart', component: UserCartComponent},
+  {path: 'user-profile', component: UserProfileComponent},
+  {path: 'user-order-history', component: UserOrderHistoryComponent}
 ];
 
 @NgModule({

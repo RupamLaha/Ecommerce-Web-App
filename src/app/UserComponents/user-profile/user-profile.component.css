@@ -1,0 +1,29 @@
+
+img{
+    max-width: 100px;
+    max-height: 100px;
+}
+
+table tbody tr td{
+    text-align: center;
+}
+
+table tbody.details tr td{
+    text-align: left;
+}
+
+button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+button:hover {
+    opacity: 0.7;
+  }

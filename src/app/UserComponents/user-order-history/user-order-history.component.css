@@ -1,13 +1,15 @@
 
+
+
 .row{
     margin: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border: 1px solid lightgrey;
 }
 
-/* .table tbody tr td{
+.table tbody tr td{
     border-top: none;
-} */
+}
 
 .table thead tr th{
     padding-left: 25px;
