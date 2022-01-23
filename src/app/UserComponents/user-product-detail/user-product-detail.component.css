@@ -1,0 +1,32 @@
+
+/* .row div{
+    border: 5px solid black;
+} */
+
+.row .column p button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 40%;
+    font-size: 18px;
+  }
+
+  .row .column p button.wishlist {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: brown;
+    text-align: center;
+    cursor: pointer;
+    width: 40%;
+    font-size: 18px;
+  }
+  
+  .row .column p button:hover {
+    opacity: 0.7;
+  }

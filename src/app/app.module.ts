@@ -8,6 +8,10 @@ import { UserRegistrationComponent } from './UserComponents/user-registration/us
 import { SellerLoginComponent } from './SellerComponents/seller-login/seller-login.component';
 import { SellerRegistrationComponent } from './SellerComponents/seller-registration/seller-registration.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserHomeComponent } from './UserComponents/user-home/user-home.component';
+import { UserProductDetailComponent } from './UserComponents/user-product-detail/user-product-detail.component';
+import { UserWishlistComponent } from './UserComponents/user-wishlist/user-wishlist.component';
+import { UserCartComponent } from './UserComponents/user-cart/user-cart.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +19,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UserLoginComponent,
     UserRegistrationComponent,
     SellerLoginComponent,
-    SellerRegistrationComponent
+    SellerRegistrationComponent,
+    UserHomeComponent,
+    UserProductDetailComponent,
+    UserWishlistComponent,
+    UserCartComponent
   ],
   imports: [
     BrowserModule,

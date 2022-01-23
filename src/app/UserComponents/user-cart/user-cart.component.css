@@ -1,0 +1,69 @@
+
+
+/* .prodRow{
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border: 1px solid lightgrey;
+} */
+
+.table{
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border: 1px solid lightgrey;
+}
+
+/* .table tbody tr td{
+    border-top: none;
+} */
+
+.priceDetails{
+    border-color: lightgrey;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+button {
+    border: none;
+    outline: 0;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 20%;
+    font-size: 12px;
+  }
+  
+  button:hover {
+    opacity: 0.7;
+  }
+
+a img{
+    padding: 10px;
+    max-width: 150px;
+    max-height: 150px;
+}
+
+.priceDetailsTable{
+    margin-top: 10px;
+    margin-right: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border: 1px solid lightgrey;
+}
+
+.table.priceDetailsTable tbody tr td{
+    border-top: none;
+    border-left: none;
+}
+
+.table.priceDetailsTable tbody tr td.priceCol,
+.table.priceDetailsTable thead tr th.priceCol{
+    text-align: right;
+}
+
+.row{
+    padding-right: 20px;
+}

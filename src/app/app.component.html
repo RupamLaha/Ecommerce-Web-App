@@ -1,6 +1,6 @@
 <!-- <h1>WowShop</h1> -->
 
-<ul>
+<!-- <ul>
   <li><img src="assets/images/wowShop.png" alt=""></li>
   <li style="float:right"><a routerLink="">Profile</a></li>
   <li style="float:right"><a routerLink="">Cart</a></li>
@@ -8,6 +8,31 @@
   <li style="float:right"><a routerLink="/user-registration">Signup</a></li>
   <li style="float:right"><a routerLink="/user-login">Login</a></li>
   <li style="float:right"><input type="text" placeholder="Search.." name="search"></li>
-</ul>
+</ul> -->
+
+<nav class="navbar navbar-expand-lg navbar-dark mb-3">
+  <img src="assets/images/wowShop.png" class="navbar-brand" href="#">
+
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/user-login">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/user-registration">Signup</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/user-wishlist">Wishlist</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/user-cart">Cart</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="">Profile</a>
+      </li>
+    </ul>
+  </div>
+
+</nav>
 
 <router-outlet></router-outlet>
