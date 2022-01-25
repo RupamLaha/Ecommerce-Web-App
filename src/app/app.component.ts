@@ -25,7 +25,7 @@ export class AppComponent implements OnInit{
       }else{
         this.currentRouteBool = false;
       }
-      console.log(temp);
+      // console.log(temp);
     })
   }
 }

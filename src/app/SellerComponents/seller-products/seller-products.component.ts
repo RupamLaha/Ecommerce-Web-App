@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Products } from 'src/app/DataModel/products';
+import { EcommerceService } from 'src/app/ecommerce.service';
 
 @Component({
   selector: 'app-seller-products',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SellerProductsComponent implements OnInit {
 
-  constructor() { }
+  adminProductsArr: Products[] = []
+
+  constructor(private ecomService: EcommerceService, private router: Router) { }
 
   ngOnInit(): void {
+    this.adminProductsArr = this.ecomService.getProducts();
+  }
+
+  editProduct(editBtn: HTMLButtonElement){
+    console.log(editBtn.id);
+    this.router.navigate(['/seller-edit-product',editBtn.id]);
+  }
+
+  removeProduct(removeBtn: HTMLButtonElement){
+    console.log(removeBtn.id);
+    this.ecomService.adminDeleteProduct(removeBtn.id);
   }
 
 }

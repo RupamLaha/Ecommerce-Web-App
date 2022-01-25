@@ -79,3 +79,7 @@ a img{
 .row{
     padding-right: 20px;
 }
+
+.prodCountColumn input{
+    width: 50px;
+}

@@ -1,5 +1,7 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { EcommerceService } from 'src/app/ecommerce.service';
 
 @Component({
   selector: 'app-user-registration',
@@ -12,7 +14,7 @@ export class UserRegistrationComponent implements OnInit {
 
   userName: string = "";
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private ecomService: EcommerceService, private router: Router) { }
 
   registrationForm = this.fb.group({
     email: ["", [Validators.required, Validators.pattern(this.emailRegEx)]],
@@ -21,6 +23,18 @@ export class UserRegistrationComponent implements OnInit {
   })
 
   ngOnInit(): void {
+  }
+
+  onSubmit(){
+    if(this.registrationForm.valid){
+      let tempEmail = this.registrationForm.get('email')?.value
+      let tempName = this.registrationForm.get('name')?.value
+      let tempPass = this.registrationForm.get('password')?.value
+
+      this.ecomService.createNewUser(tempEmail, tempName, tempPass);
+
+      this.router.navigate(['/user-login']);
+    }
   }
 
 

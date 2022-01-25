@@ -2,7 +2,7 @@
 <br><br>
 
 
-    <form [formGroup]="registrationForm">
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
 
         <div class="form-group">
             <h2>Register</h2>

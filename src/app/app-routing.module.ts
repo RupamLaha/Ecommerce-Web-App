@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SellerAddProductComponent } from './SellerComponents/seller-add-product/seller-add-product.component';
+import { SellerEditProductComponent } from './SellerComponents/seller-edit-product/seller-edit-product.component';
 import { SellerLoginComponent } from './SellerComponents/seller-login/seller-login.component';
 import { SellerOrdersComponent } from './SellerComponents/seller-orders/seller-orders.component';
 import { SellerProductsComponent } from './SellerComponents/seller-products/seller-products.component';
@@ -31,6 +32,7 @@ const routes: Routes = [
   {path: 'seller-products', component: SellerProductsComponent},
   {path: 'seller-orders', component: SellerOrdersComponent},
   {path: 'seller-add-product', component: SellerAddProductComponent},
+  {path: 'seller-edit-product/:id', component: SellerEditProductComponent},
   {path: '', redirectTo: "/user-login", pathMatch: "full"},
   {path: '**', component: PageNotFoundComponent}
 ];

@@ -22,6 +22,7 @@ import { SellerProductsComponent } from './SellerComponents/seller-products/sell
 import { SellerOrdersComponent } from './SellerComponents/seller-orders/seller-orders.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SellerAddProductComponent } from './SellerComponents/seller-add-product/seller-add-product.component';
+import { SellerEditProductComponent } from './SellerComponents/seller-edit-product/seller-edit-product.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { SellerAddProductComponent } from './SellerComponents/seller-add-product
     SellerProductsComponent,
     SellerOrdersComponent,
     PageNotFoundComponent,
-    SellerAddProductComponent
+    SellerAddProductComponent,
+    SellerEditProductComponent
   ],
   imports: [
     BrowserModule,

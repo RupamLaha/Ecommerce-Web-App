@@ -4,10 +4,10 @@ export class Products {
     price: number
     description: string
 
-    constructor(){
-        this.id = ""
-        this.name = ""
-        this.price = 0
-        this.description = ""
+    constructor(id: string, name: string, price: number, description: string){
+        this.id = id
+        this.name = name
+        this.price = price
+        this.description = description
     }
 }

@@ -16,15 +16,25 @@
 
                   <tr>
                     <td>
-                        <div class="row prodRow" *ngFor="let prod of cartArr">
+                        <div class="row prodRow" *ngFor="let prod of currUser?.cart">
                             <div class="col-3 d-flex justify-content-center">
                                 <a routerLink="/user-product-detail"><img src="assets/images/mobile.jpg" alt="Denim Jeans" style="width:100%"></a>
                             </div>
-                            <div class="col-9 prodDetailColumn">
-                                <a routerLink="/user-product-detail"><h3>{{prod.name}}</h3></a>
-                                <a routerLink="/user-product-detail"><p class="price">{{prod.price}}</p></a>
-                                <p><button routerLink="">Remove</button></p>
+                            <div class="col-6 prodDetailColumn">
+                                <a routerLink="/user-product-detail"><h3>{{prod.product.name}}</h3></a>
+                                <a routerLink="/user-product-detail"><p class="price">Rs.{{prod.product.price}}</p></a>
+                                <p><button #remove (click)="onRemove(remove)" [id]="prod.product.id">Remove</button></p>
                             </div>
+                            <div class="col-3 prodCountColumn">
+                              <!-- <div> -->
+                                <button #decre (click)="increDecre(decre)" [id]="prod.product.id" name="-">-</button>
+                                <input type="text" name="prodCount" [value]="prod.count">
+                                <button #incre (click)="increDecre(incre)" [id]="prod.product.id" name="+">+</button>
+                              <!-- </div> -->
+                              <!-- <a routerLink="/user-product-detail"><h3>{{prod.product.name}}</h3></a>
+                              <a routerLink="/user-product-detail"><p class="price">{{prod.product.price}}</p></a>
+                              <p><button #remove (click)="onRemove(remove)" [id]="prod.product.id">Remove</button></p> -->
+                          </div>
                         </div>
                     </td>
                 </tr>
@@ -40,6 +50,7 @@
 
         </div>
 
+        <!-- price recipt view -->
         <div class="col-5 priceDetailsTableColumn">
 
             <table class="table priceDetailsTable">
@@ -51,17 +62,17 @@
                 <tbody>
                   <tr>
                     <td>Price</td>
-                    <td class="priceCol">$90</td>
+                    <td class="priceCol">Rs.{{subTotal}}</td>
                   </tr>
                   <tr>
-                    <td>Tax</td>
-                    <td class="priceCol">$5</td>
+                    <td>Delivery Charge</td>
+                    <td class="priceCol">Rs.{{delivaryChrg}}</td>
                   </tr>
                 </tbody>
                 <thead>
                     <tr>
                       <th>Total</th>
-                      <th class="priceCol">$95</th>
+                      <th class="priceCol">Rs.{{allTotal}}</th>
                     </tr>
                   </thead>
               </table>

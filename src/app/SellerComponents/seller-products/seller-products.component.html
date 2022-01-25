@@ -15,18 +15,19 @@
                 </thead>
 
                 <tbody>
-                    <tr>
+                    <tr *ngFor="let prod of adminProductsArr">
                         <td style="width: 20%">
-                            <a routerLink=""><img src="assets/images/mobile.jpg" alt="Denim Jeans" style="width:100%"></a>
+                            <a ><img src="assets/images/mobile.jpg" alt="Denim Jeans" style="width:100%"></a>
                         </td>
                         <td style="width: 60%">
-                            <a routerLink=""><h2>Oppo a</h2></a>
-                            <a routerLink=""><p class="price">$12</p></a>
-                            <a routerLink=""><p>Product Description</p></a>
+                            <a ><h6>Id: {{prod.id}}</h6></a>
+                            <a ><h2>{{prod.name}}</h2></a>
+                            <a ><p class="price"><b>Price:</b> Rs.{{prod.price}}</p></a>
+                            <a ><p><b>Product description:</b> {{prod.description}}</p></a>
                         </td>
                         <td style="width: 20%">
-                            <p><button class="productActionBtnEdit" routerLink="">Edit</button></p>
-                            <p><button class="productActionBtnRemove" routerLink="">Remove</button></p>
+                            <p><button class="productActionBtnEdit" [id]="prod.id" #editBtn (click)="editProduct(editBtn)">Edit</button></p>
+                            <p><button class="productActionBtnRemove" [id]="prod.id" #removeBtn (click)="removeProduct(removeBtn)">Remove</button></p>
                         </td>
                     </tr>
                 </tbody>
