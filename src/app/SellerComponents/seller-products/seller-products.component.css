@@ -1,0 +1,48 @@
+
+button {
+    background-color: black;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+    font: bold;
+  }
+
+  button.productActionBtnEdit {
+    background-color: lightskyblue;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font: bold;
+  }
+
+  button.productActionBtnRemove {
+    background-color: lightsalmon;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font: bold;
+  }
+
+  button:hover {
+    opacity: 0.8;
+  }
+
+  a img{
+    padding: 10px;
+    max-width: 150px;
+    max-height: 150px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}

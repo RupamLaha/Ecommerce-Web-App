@@ -11,37 +11,26 @@
                       <th>Cart Items</th>
                     </tr>
                   </thead>
+
                 <tbody>
+
                   <tr>
                     <td>
-                        <div class="row prodRow">
+                        <div class="row prodRow" *ngFor="let prod of cartArr">
                             <div class="col-3 d-flex justify-content-center">
                                 <a routerLink="/user-product-detail"><img src="assets/images/mobile.jpg" alt="Denim Jeans" style="width:100%"></a>
                             </div>
                             <div class="col-9 prodDetailColumn">
-                                <a routerLink="/user-product-detail"><h3>Oppo a</h3></a>
-                                <a routerLink="/user-product-detail"><p class="price">$12</p></a>
+                                <a routerLink="/user-product-detail"><h3>{{prod.name}}</h3></a>
+                                <a routerLink="/user-product-detail"><p class="price">{{prod.price}}</p></a>
                                 <p><button routerLink="">Remove</button></p>
                             </div>
                         </div>
                     </td>
                 </tr>
 
-                <tr>
-                    <td>
-                        <div class="row prodRow">
-                            <div class="col-3 d-flex justify-content-center">
-                                <a routerLink="/user-product-detail"><img src="assets/images/mobile.jpg" alt="Denim Jeans" style="width:100%"></a>
-                            </div>
-                            <div class="col-9 prodDetailColumn">
-                                <a routerLink="/user-product-detail"><h3>Oppo a</h3></a>
-                                <a routerLink="/user-product-detail"><p class="price">$12</p></a>
-                                <p><button routerLink="">Remove</button></p>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
                 </tbody>
+                
                 <thead>
                     <tr>
                       <th style="text-align: right;"><button routerLink="" class="buy">Buy</button></th>

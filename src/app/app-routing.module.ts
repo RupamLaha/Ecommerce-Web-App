@@ -1,5 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SellerAddProductComponent } from './SellerComponents/seller-add-product/seller-add-product.component';
+import { SellerLoginComponent } from './SellerComponents/seller-login/seller-login.component';
+import { SellerOrdersComponent } from './SellerComponents/seller-orders/seller-orders.component';
+import { SellerProductsComponent } from './SellerComponents/seller-products/seller-products.component';
+import { SellerProfileComponent } from './SellerComponents/seller-profile/seller-profile.component';
+import { SellerRegistrationComponent } from './SellerComponents/seller-registration/seller-registration.component';
 import { UserCartComponent } from './UserComponents/user-cart/user-cart.component';
 import { UserHomeComponent } from './UserComponents/user-home/user-home.component';
 import { UserLoginComponent } from './UserComponents/user-login/user-login.component';
@@ -17,7 +24,15 @@ const routes: Routes = [
   {path: 'user-wishlist', component: UserWishlistComponent},
   {path: 'user-cart', component: UserCartComponent},
   {path: 'user-profile', component: UserProfileComponent},
-  {path: 'user-order-history', component: UserOrderHistoryComponent}
+  {path: 'user-order-history', component: UserOrderHistoryComponent},
+  {path: 'seller-login', component: SellerLoginComponent},
+  {path: 'seller-registration', component: SellerRegistrationComponent},
+  {path: 'seller-profile', component: SellerProfileComponent},
+  {path: 'seller-products', component: SellerProductsComponent},
+  {path: 'seller-orders', component: SellerOrdersComponent},
+  {path: 'seller-add-product', component: SellerAddProductComponent},
+  {path: '', redirectTo: "/user-login", pathMatch: "full"},
+  {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({

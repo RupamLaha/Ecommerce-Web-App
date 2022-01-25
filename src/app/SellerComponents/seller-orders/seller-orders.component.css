@@ -1,0 +1,11 @@
+
+  a img{
+    padding: 10px;
+    max-width: 150px;
+    max-height: 150px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}

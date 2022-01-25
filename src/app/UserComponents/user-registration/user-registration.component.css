@@ -1,23 +1,14 @@
 
-
 body {font-family: Arial, Helvetica, sans-serif;}
 form {border: 8px solid #f1f1f1;}
 
-input:not(.gender, .lang) {
+input {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
   box-sizing: border-box;
-}
-
-label.gender {
-    padding: 12px 5px;
-}
-
-input#birthday {
-    width: 30%;
 }
 
 button {
@@ -35,20 +26,11 @@ button:hover {
   opacity: 0.8;
 }
 
-.container {
-  padding: 16px;
-}
-
-/* p {
-    color: red;
-    visibility: hidden;
-} */
-
 h2{
     text-align: center;
 }
 
-.full{
+form{
   margin: auto;
   width: 50%;
   border: 3px solid #f1f1f1;

@@ -1,1 +1,41 @@
-<p>seller-login works!</p>
+<br><br>
+
+
+    <form [formGroup]="loginForm">
+
+        <div class="form-group">
+            <h2>Admin Login</h2>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1"><b>Email</b></label>
+          <input [class.is-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          <!-- <small [class.d-none]="loginForm.get('email')?.valid || loginForm.get('email')?.untouched" id="emailHelp" class="text-danger">Email is required</small> -->
+          
+          <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+            <small *ngIf="loginForm.get('email')?.errors?.['required']" class="text-danger">Email is required</small>
+            <small *ngIf="loginForm.get('email')?.errors?.['pattern']" class="text-danger">Please enter valid email eg. harish@gmail.com</small>
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputPassword1"><b>Password</b></label>
+          <input [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          <!-- <small [class.d-none]="loginForm.get('password')?.valid || loginForm.get('password')?.untouched" id="passwordHelp" class="text-danger">Password is required</small> -->
+            
+          <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            <small *ngIf="loginForm.get('password')?.errors?.['required']" class="text-danger">Password is required</small>
+            <small *ngIf="loginForm.get('password')?.errors?.['minlength']" class="text-danger">Password must be of length 4 or greater</small>
+          </div>
+
+        </div>
+
+        <p>New user? <a routerLink="/seller-registration">Register</a></p>
+
+        <button type="submit" class="btn">Submit</button>
+
+      </form>
+
+      <!-- {{loginForm.value | json}} -->
+
