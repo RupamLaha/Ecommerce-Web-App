@@ -10,8 +10,8 @@
 
     <div class="form-group">
         <label for="exampleInputId"><b>Product Id</b></label>
-        <input [class.is-invalid]="newProductAddingForm.get('id')?.invalid && newProductAddingForm.get('id')?.touched" formControlName="id" type="text" class="form-control" id="exampleInputId" aria-describedby="idHelp" placeholder="Enter id">
-        <small [class.d-none]="newProductAddingForm.get('id')?.valid || newProductAddingForm.get('id')?.untouched" id="idHelp" class="text-danger">Name is required</small>
+        <input formControlName="id" type="text" class="form-control" id="exampleInputId" aria-describedby="idHelp" placeholder="Enter id" readonly>
+        <!-- <small [class.d-none]="newProductAddingForm.get('id')?.valid || newProductAddingForm.get('id')?.untouched" id="idHelp" class="text-danger">Name is required</small> -->
     </div>
 
     <div class="form-group">

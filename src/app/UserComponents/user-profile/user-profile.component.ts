@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EcommerceService } from 'src/app/ecommerce.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor() { }
+  name: string =  ""
+  email: string = ""
+  address: string = ""
+
+  constructor(private ecoService: EcommerceService) { }
 
   ngOnInit(): void {
+    this.name = this.ecoService.getUser().name
+    this.email = this.ecoService.getUser().email
+    this.address = this.ecoService.getUser().address
   }
 
 }

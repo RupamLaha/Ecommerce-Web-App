@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Cart } from './DataModel/CartModel/cart';
+import { OrderedProduct } from './DataModel/OrderedProducts/ordered-product';
 import { Products } from './DataModel/products';
 import { User } from './DataModel/UserDataModel/user';
 
@@ -9,6 +10,8 @@ import { User } from './DataModel/UserDataModel/user';
 export class EcommerceService {
 
   public productsArr: Products[] = []
+
+  private orderedProducts: OrderedProduct[] = []
 
   // testing purpose
   tempUser = new User("rupam@gmail.com", "rupam", "1234")
@@ -93,6 +96,50 @@ export class EcommerceService {
 
     return this.usersArr[userIndex]
 
+  }
+
+  addToWishlist(prodId: string){
+
+    let index = this.productsArr.findIndex(p => p.id === prodId)
+
+    let tempProd: Products = this.productsArr[index]
+
+    let localEmail = localStorage.getItem("email");
+    
+    let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
+
+    //checking whether this product already exists in the cart or not..
+    let duplicateProdIndex = this.usersArr[userIndex].wishlist.findIndex(p => p.id === prodId)
+
+    if(duplicateProdIndex === -1){
+      this.usersArr[userIndex].wishlist.push(tempProd);
+    }else{
+      
+    }
+  }
+
+  removeFromWishlist(prodId: string){
+
+    let localEmail = localStorage.getItem("email");
+    
+    let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
+
+    //checking whether this product already exists in the cart or not..
+    let prodIndex = this.usersArr[userIndex].wishlist.findIndex(p => p.id === prodId)
+
+    if(prodIndex !== -1){
+      this.usersArr[userIndex].wishlist.splice(prodIndex,1);
+    }else{
+      
+    }
+  }
+
+  getWishlistArr(): Products[]{
+    let localEmail = localStorage.getItem("email");
+
+    let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
+
+    return this.usersArr[userIndex].wishlist
   }
 
   addProdToCart(prodId: string){
@@ -209,6 +256,14 @@ export class EcommerceService {
     }
 
     return {subTotal, allTotal, deliveryChrg}
+
+  }
+
+  getProduct(id: string): Products{
+
+    let index = this.productsArr.findIndex(p => p.id === id)
+
+    return this.productsArr[index]
 
   }
 

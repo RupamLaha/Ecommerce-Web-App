@@ -5,10 +5,10 @@
         <img src="assets/images/mobile.jpg" alt="image">
     </div>
     <div class="col-7 d-flex justify-content-center flex-column column">
-        <h1>Oppo a</h1>
-        <h3>$12</h3>
-        <p>Product Description</p>
-        <p><button routerLink="/user-cart">Add to Cart</button></p>
-        <p><button class="wishlist" routerLink="/user-wishlist">Add to Wishlist</button></p>
+        <h1>{{product?.name}}</h1>
+        <h3>Rs.{{product?.price}}</h3>
+        <p>{{product?.description}}</p>
+        <p><button routerLink="/user-cart" #addToCart (click)="addToCartClicked(addToCart)" [id]="product?.id">Add to Cart</button></p>
+        <p><button class="wishlist" routerLink="/user-wishlist" #addToWish (click)="addToWishClicked(addToWish)" [id]="product?.id">Add to Wishlist</button></p>
     </div>
 </div>

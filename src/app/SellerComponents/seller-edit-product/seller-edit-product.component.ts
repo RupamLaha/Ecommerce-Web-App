@@ -18,7 +18,7 @@ export class SellerEditProductComponent implements OnInit {
   constructor(private fb: FormBuilder, private ecomService: EcommerceService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   newProductAddingForm = this.fb.group({
-    id: ["", Validators.required],
+    id: [""],
     name: ["", Validators.required],
     price: ["", Validators.required],
     description: ["", Validators.required]
