@@ -360,4 +360,16 @@ export class EcommerceService {
     localStorage.removeItem("email");
   }
 
+
+
+  // for route guards...
+
+  checkIfAdminLoggedIn(){
+    return !!localStorage.getItem("adminEmail")
+  }
+
+  checkIfUserLoggedIn(){
+    return !!localStorage.getItem("email")
+  }
+
 }

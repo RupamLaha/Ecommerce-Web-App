@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AdminRouteGuard } from './RouteGuard/admin-route.guard';
+import { RouteGuardGuard } from './RouteGuard/route-guard.guard';
 import { SellerAddProductComponent } from './SellerComponents/seller-add-product/seller-add-product.component';
 import { SellerEditProductComponent } from './SellerComponents/seller-edit-product/seller-edit-product.component';
 import { SellerLoginComponent } from './SellerComponents/seller-login/seller-login.component';
@@ -20,19 +22,19 @@ import { UserWishlistComponent } from './UserComponents/user-wishlist/user-wishl
 const routes: Routes = [
   {path: 'user-login', component: UserLoginComponent},
   {path: 'user-registration', component: UserRegistrationComponent},
-  {path: 'user-home', component: UserHomeComponent},
-  {path: 'user-product-detail/:id', component: UserProductDetailComponent},
-  {path: 'user-wishlist', component: UserWishlistComponent},
-  {path: 'user-cart', component: UserCartComponent},
-  {path: 'user-profile', component: UserProfileComponent},
-  {path: 'user-order-history', component: UserOrderHistoryComponent},
+  {path: 'user-home', component: UserHomeComponent, canActivate: [RouteGuardGuard]},
+  {path: 'user-product-detail/:id', component: UserProductDetailComponent, canActivate: [RouteGuardGuard]},
+  {path: 'user-wishlist', component: UserWishlistComponent, canActivate: [RouteGuardGuard]},
+  {path: 'user-cart', component: UserCartComponent, canActivate: [RouteGuardGuard]},
+  {path: 'user-profile', component: UserProfileComponent, canActivate: [RouteGuardGuard]},
+  {path: 'user-order-history', component: UserOrderHistoryComponent, canActivate: [RouteGuardGuard]},
   {path: 'seller-login', component: SellerLoginComponent},
   {path: 'seller-registration', component: SellerRegistrationComponent},
-  {path: 'seller-profile', component: SellerProfileComponent},
-  {path: 'seller-products', component: SellerProductsComponent},
-  {path: 'seller-orders', component: SellerOrdersComponent},
-  {path: 'seller-add-product', component: SellerAddProductComponent},
-  {path: 'seller-edit-product/:id', component: SellerEditProductComponent},
+  {path: 'seller-profile', component: SellerProfileComponent, canActivate: [AdminRouteGuard]},
+  {path: 'seller-products', component: SellerProductsComponent, canActivate: [AdminRouteGuard]},
+  {path: 'seller-orders', component: SellerOrdersComponent, canActivate: [AdminRouteGuard]},
+  {path: 'seller-add-product', component: SellerAddProductComponent, canActivate: [AdminRouteGuard]},
+  {path: 'seller-edit-product/:id', component: SellerEditProductComponent, canActivate: [AdminRouteGuard]},
   {path: '', redirectTo: "/user-login", pathMatch: "full"},
   {path: '**', component: PageNotFoundComponent}
 ];

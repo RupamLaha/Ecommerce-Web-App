@@ -25,6 +25,8 @@ export class UserCartComponent implements OnInit {
   allTotal = 0
   delivaryChrg = 0
 
+  displayStyle = "none";
+
   constructor(private ecomService: EcommerceService) { }
 
   ngOnInit(): void {
@@ -58,6 +60,11 @@ export class UserCartComponent implements OnInit {
   onBuy(){
     this.ecomService.productBuy();
     this.ngOnInit()
+    this.displayStyle = "block";
+  }
+
+  closePopup() {
+    this.displayStyle = "none";
   }
 
 }

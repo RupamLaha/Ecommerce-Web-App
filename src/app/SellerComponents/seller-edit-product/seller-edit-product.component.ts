@@ -15,6 +15,8 @@ export class SellerEditProductComponent implements OnInit {
 
   // currentProduct: Products;
 
+  displayStyle = "none";
+
   constructor(private fb: FormBuilder, private ecomService: EcommerceService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   prodIdRegx = /^[0-9]*$/
@@ -62,6 +64,8 @@ export class SellerEditProductComponent implements OnInit {
     this.newProductAddingForm.markAsUntouched()
 
     this.router.navigate(['/seller-products']);
+
+    this.displayStyle = "block";
   }
 
 }

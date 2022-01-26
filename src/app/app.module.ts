@@ -24,6 +24,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { SellerAddProductComponent } from './SellerComponents/seller-add-product/seller-add-product.component';
 import { SellerEditProductComponent } from './SellerComponents/seller-edit-product/seller-edit-product.component';
 
+import { RouteGuardGuard } from './RouteGuard/route-guard.guard';
+import { AdminRouteGuard } from './RouteGuard/admin-route.guard';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +54,7 @@ import { SellerEditProductComponent } from './SellerComponents/seller-edit-produ
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [EcommerceService],
+  providers: [EcommerceService, RouteGuardGuard, AdminRouteGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

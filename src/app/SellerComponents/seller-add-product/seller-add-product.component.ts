@@ -13,6 +13,8 @@ export class SellerAddProductComponent implements OnInit {
 
   adminProductsArr: Products[] = []
 
+  displayStyle = "none";
+
   constructor(private fb: FormBuilder, private ecomService: EcommerceService, private router: Router) { }
 
   prodIdRegx = /^[0-9]*$/
@@ -45,6 +47,8 @@ export class SellerAddProductComponent implements OnInit {
     }else{
       alert("Invalid product")
     }
+
+    this.displayStyle = "block";
   }
 
   ngOnInit(): void {

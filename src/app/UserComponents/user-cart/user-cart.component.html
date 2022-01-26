@@ -43,7 +43,7 @@
                 
                 <thead *ngIf="buyBtnVisible">
                     <tr>
-                      <th style="text-align: right;"><button (click)="onBuy()" class="buy">Buy</button></th>
+                      <th style="text-align: right;"><button (click)="onBuy()" class="buy" >Buy</button></th>
                     </tr>
                   </thead>
 
@@ -58,6 +58,25 @@
                   </thead>
 
               </table>
+
+              <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Order Placed!</h4>
+                    </div>
+                    <div class="modal-body" style="text-align: center;">
+                      <!-- <p>One Stop Solution for all CS problems</p> -->
+                      <img src="/assets/images/order-success.png" alt="" style="max-width: 250px; max-height: 250px; text-align: center;">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" (click)="closePopup()">
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
         </div>
 

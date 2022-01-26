@@ -34,6 +34,7 @@ export class SellerProductsComponent implements OnInit {
   removeProduct(removeBtn: HTMLButtonElement){
     console.log(removeBtn.id);
     this.ecomService.adminDeleteProduct(removeBtn.id);
+    this.ngOnInit()
   }
 
 }

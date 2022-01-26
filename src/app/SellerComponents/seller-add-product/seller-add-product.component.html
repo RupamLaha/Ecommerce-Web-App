@@ -2,6 +2,12 @@
 <br><br>
 
 
+<p>
+    <ngb-alert [dismissible]="true" type='success' [ngStyle]="{'display':displayStyle}">
+      <strong>Product successfully added.</strong>
+    </ngb-alert>
+</p>
+
 <form [formGroup]="newProductAddingForm" (ngSubmit)="onSubmit()">
 
     <div class="form-group">
