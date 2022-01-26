@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EcommerceService } from 'src/app/ecommerce.service';
 
 @Component({
   selector: 'app-seller-profile',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SellerProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ecomService: EcommerceService) { }
 
   ngOnInit(): void {
+  }
+
+  onAdminLogout(){
+    this.ecomService.adminLogout()
   }
 
 }

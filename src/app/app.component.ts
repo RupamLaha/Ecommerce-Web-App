@@ -11,6 +11,10 @@ export class AppComponent implements OnInit{
   currentRoute: string = "";
   currentRouteBool: boolean = false;
 
+  showAdminNavOptions: boolean = false;
+
+  showUserNavOptions: boolean = false;
+
   constructor(private router: Router){
       
   }
@@ -24,6 +28,22 @@ export class AppComponent implements OnInit{
         this.currentRouteBool = true;
       }else{
         this.currentRouteBool = false;
+      }
+
+      let tempAdminEmail = localStorage.getItem("adminEmail");
+
+      if(tempAdminEmail === "laha@gmail.com"){
+        this.showAdminNavOptions = true
+      }else{
+        this.showAdminNavOptions = false
+      }
+
+      let tempUserEmail = localStorage.getItem("email");
+
+      if(tempUserEmail !== null){
+        this.showUserNavOptions = true
+      }else{
+        this.showUserNavOptions = false
       }
       // console.log(temp);
     })

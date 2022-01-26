@@ -15,11 +15,14 @@ export class SellerAddProductComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private ecomService: EcommerceService, private router: Router) { }
 
+  prodIdRegx = /^[0-9]*$/
+  nameRegx = /^[a-zA-Z ]*$/
+
   newProductAddingForm = this.fb.group({
-    id: ["", Validators.required],
-    name: ["", Validators.required],
-    price: ["", Validators.required],
-    description: ["", Validators.required]
+    id: ["", [Validators.required, Validators.pattern(this.prodIdRegx)]],
+    name: ["", [Validators.required, Validators.pattern(this.nameRegx)]],
+    price: ["", [Validators.required, Validators.pattern(this.prodIdRegx)]],
+    description: ["", [Validators.required, Validators.pattern(this.nameRegx)]]
   })
 
   onSubmit(){

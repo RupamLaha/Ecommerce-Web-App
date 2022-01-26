@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
+import { AdminOrderBookModel } from './DataModel/AdminOrderBookModel/admin-order-book-model';
 import { Cart } from './DataModel/CartModel/cart';
 import { OrderedProduct } from './DataModel/OrderedProducts/ordered-product';
+import { OrderStatus } from './DataModel/OrderStatusEnum/order-status';
 import { Products } from './DataModel/products';
 import { User } from './DataModel/UserDataModel/user';
 
@@ -11,7 +13,7 @@ export class EcommerceService {
 
   public productsArr: Products[] = []
 
-  private orderedProducts: OrderedProduct[] = []
+  private adminOrderArr: AdminOrderBookModel[] = []
 
   // testing purpose
   tempUser = new User("rupam@gmail.com", "rupam", "1234")
@@ -24,6 +26,26 @@ export class EcommerceService {
   }
 
   // admin functions...
+
+  adminLogin(email: string, pass: string): boolean{
+    
+    if(email === "laha@gmail.com"){
+      if(pass === "1234"){
+        localStorage.setItem("adminEmail",email)
+        return true
+      }else{
+        alert("Incorrect password!")
+        return false
+      }
+    }else{
+      alert("User not found!")
+      return false
+    }
+  }
+
+  adminLogout(){
+    localStorage.removeItem("adminEmail")
+  }
 
   adminAddProducts(id: string, name: string, price: number, description: string) {
     var tempProd = new Products(id, name, price, description);
@@ -55,6 +77,33 @@ export class EcommerceService {
     this.productsArr[index].description = desc
 
     // console.log(index);
+  }
+
+  getAdminOrderBook(): AdminOrderBookModel[]{
+    return this.adminOrderArr
+  }
+
+  adminUpdateOrderStatus(buyeremail: string, status: string, prodId: string){
+
+    //making chang in the user order history arr..
+    let index = this.usersArr.findIndex(u => u.email === buyeremail)
+
+    let prodIndex = this.usersArr[index].orderedHistory.findIndex(p => p.id === prodId)
+
+    if(status === "Shipped"){
+      this.usersArr[index].orderedHistory[prodIndex].orderStatus = OrderStatus.Shipped
+    }else{
+      this.usersArr[index].orderedHistory[prodIndex].orderStatus = OrderStatus.Pending
+    }
+
+    //making change in the adminOrder arr....
+    let adminProdIndex = this.adminOrderArr.findIndex(p => p.id === prodId)
+
+    if(status === "Shipped"){
+      this.adminOrderArr[adminProdIndex].orderStatus = OrderStatus.Shipped
+    }else{
+      this.adminOrderArr[adminProdIndex].orderStatus = OrderStatus.Pending
+    }
   }
 
 
@@ -265,6 +314,50 @@ export class EcommerceService {
 
     return this.productsArr[index]
 
+  }
+
+  productBuy(){
+    //add products to order history of user and remove from cart...
+    let localEmail = localStorage.getItem("email");
+
+    let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
+
+    for(let prod of this.usersArr[userIndex].cart){
+      let tempProdId = prod.product.id
+      let tempProdName = prod.product.name
+      let tempProdPrice = prod.product.price
+      let tempProdDesc = prod.product.description
+      let tempProdQuantity = prod.count
+      let tempOrderProduct = new OrderedProduct(tempProdId, tempProdName, tempProdPrice, tempProdDesc, tempProdQuantity)
+
+      this.usersArr[userIndex].orderedHistory.push(tempOrderProduct)
+
+      //add products to orders of admin...
+
+      let name = this.usersArr[userIndex].name
+      let email = this.usersArr[userIndex].email
+      let add = this.usersArr[userIndex].address
+
+      let tempAdminOrderBookProd = new AdminOrderBookModel(tempProdId, tempProdName, tempProdPrice, tempProdDesc, tempProdQuantity, name, email, add)
+
+      this.adminOrderArr.push(tempAdminOrderBookProd)
+    }
+
+    this.usersArr[userIndex].cart = []
+
+
+  }
+
+  getUserOrderHistory(): OrderedProduct[]{
+    let localEmail = localStorage.getItem("email");
+
+    let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
+
+    return this.usersArr[userIndex].orderedHistory
+  }
+
+  userLogout(){
+    localStorage.removeItem("email");
   }
 
 }

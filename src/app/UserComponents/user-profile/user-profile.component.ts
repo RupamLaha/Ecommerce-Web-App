@@ -20,4 +20,8 @@ export class UserProfileComponent implements OnInit {
     this.address = this.ecoService.getUser().address
   }
 
+  onLogOut(){
+    this.ecoService.userLogout()
+  }
+
 }

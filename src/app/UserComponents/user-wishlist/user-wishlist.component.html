@@ -5,16 +5,27 @@
             <th>Wishlist</th>
         </tr>
     </thead>
+
+    <thead *ngIf="showEmptyIcon">
+        <tr>
+          <th style="text-align: center;">
+            <img src="/assets/images/empty-wishlist.png" style="max-width: 250px; max-height: 250px;" alt="">
+            <h4>Opps..your wishlist is empty!</h4><br><br>
+            <button routerLink="/user-home" class="buy">Shop</button>
+          </th>
+        </tr>
+    </thead>
+
     <tbody>
       <tr>
         <td>
             <div class="row" *ngFor="let prod of wishListArr">
                 <div class="col-3 d-flex justify-content-center">
-                    <a routerLink="/user-product-detail"><img src="assets/images/mobile.jpg" alt="Denim Jeans" style="width:100%"></a>
+                    <a [routerLink]="['/user-product-detail',prod.id]"><img src="assets/images/mobile.jpg" alt="Denim Jeans" style="width:100%"></a>
                 </div>
                 <div class="col-9 prodDetailColumn">
-                    <a routerLink="/user-product-detail"><h2>{{prod.name}}</h2></a>
-                    <a routerLink="/user-product-detail"><p class="price">Rs.{{prod.price}}</p></a>
+                    <a [routerLink]="['/user-product-detail',prod.id]"><h2>{{prod.name}}</h2></a>
+                    <a [routerLink]="['/user-product-detail',prod.id]"><p class="price">Rs.{{prod.price}}</p></a>
                     <p><button routerLink="/user-cart" #addToCart (click)="addToCartClicked(addToCart)" [id]="prod.id">Add to Cart</button></p>
                     <p><button #remove (click)="removeFormWishClicked(remove)" [id]="prod.id">Remove from wishlist</button></p>
                 </div>

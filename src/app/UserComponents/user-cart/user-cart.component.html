@@ -18,17 +18,17 @@
                     <td>
                         <div class="row prodRow" *ngFor="let prod of currUser?.cart">
                             <div class="col-3 d-flex justify-content-center">
-                                <a routerLink="/user-product-detail"><img src="assets/images/mobile.jpg" alt="Denim Jeans" style="width:100%"></a>
+                                <a [routerLink]="['/user-product-detail', prod.product.id]"><img src="assets/images/mobile.jpg" alt="Denim Jeans" style="width:100%"></a>
                             </div>
                             <div class="col-6 prodDetailColumn">
-                                <a routerLink="/user-product-detail"><h3>{{prod.product.name}}</h3></a>
-                                <a routerLink="/user-product-detail"><p class="price">Rs.{{prod.product.price}}</p></a>
+                                <a [routerLink]="['/user-product-detail', prod.product.id]"><h3>{{prod.product.name}}</h3></a>
+                                <a><p class="price">Rs.{{prod.product.price}}</p></a>
                                 <p><button #remove (click)="onRemove(remove)" [id]="prod.product.id">Remove</button></p>
                             </div>
                             <div class="col-3 prodCountColumn">
                               <!-- <div> -->
                                 <button #decre (click)="increDecre(decre)" [id]="prod.product.id" name="-">-</button>
-                                <input type="text" name="prodCount" [value]="prod.count">
+                                <input type="text" name="prodCount" [value]="prod.count" readonly>
                                 <button #incre (click)="increDecre(incre)" [id]="prod.product.id" name="+">+</button>
                               <!-- </div> -->
                               <!-- <a routerLink="/user-product-detail"><h3>{{prod.product.name}}</h3></a>
@@ -41,11 +41,22 @@
 
                 </tbody>
                 
-                <thead>
+                <thead *ngIf="buyBtnVisible">
                     <tr>
-                      <th style="text-align: right;"><button routerLink="" class="buy">Buy</button></th>
+                      <th style="text-align: right;"><button (click)="onBuy()" class="buy">Buy</button></th>
                     </tr>
                   </thead>
+
+                  <thead *ngIf="!buyBtnVisible">
+                    <tr>
+                      <th style="text-align: center;">
+                        <img src="/assets/images/empty-wishlist.png" style="max-width: 250px; max-height: 250px;" alt="">
+                        <h4>Opps..your cart is empty!</h4><br><br>
+                        <button routerLink="/user-home" class="buy">Shop</button>
+                      </th>
+                    </tr>
+                  </thead>
+
               </table>
 
         </div>

@@ -23,10 +23,18 @@ export class UserWishlistComponent implements OnInit {
 
   wishListArr: Products[] = []
 
+  showEmptyIcon: boolean = true
+
   constructor(private ecomService: EcommerceService, private router: Router) { }
 
   ngOnInit(): void {
     this.wishListArr = this.ecomService.getWishlistArr()
+
+    if(this.wishListArr.length === 0){
+      this.showEmptyIcon = true
+    }else{
+      this.showEmptyIcon = false
+    }
   }
 
   addToCartClicked(btn: HTMLButtonElement){

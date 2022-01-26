@@ -17,11 +17,14 @@ export class SellerEditProductComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private ecomService: EcommerceService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
+  prodIdRegx = /^[0-9]*$/
+  nameRegx = /^[a-zA-Z ]*$/
+
   newProductAddingForm = this.fb.group({
     id: [""],
-    name: ["", Validators.required],
-    price: ["", Validators.required],
-    description: ["", Validators.required]
+    name: ["", [Validators.required, Validators.pattern(this.nameRegx)]],
+    price: ["", [Validators.required, Validators.pattern(this.prodIdRegx)]],
+    description: ["", [Validators.required, Validators.pattern(this.nameRegx)]]
   })
 
   ngOnInit(): void {

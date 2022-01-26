@@ -6,45 +6,67 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th colspan="3">All Products List</th>
+                        <th colspan="3">Order List</th>
+                    </tr>
+                </thead>
+
+                <thead *ngIf="showEmptyIcon">
+                    <tr>
+                      <th style="text-align: center;">
+                        <img src="/assets/images/empty-wishlist.png" style="max-width: 250px; max-height: 250px;" alt="">
+                        <h4>Opps..no order to show!</h4><br><br>
+                      </th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <tr>
+                    <tr *ngFor="let prod of adminOderBook">
                         <td style="width: 20%">
-                            <a routerLink=""><img src="assets/images/mobile.jpg" alt="Denim Jeans"
+                            <a><img src="assets/images/mobile.jpg" alt="Denim Jeans"
                                     style="width:100%"></a>
                         </td>
                         <td style="width: 60%">
-                            <a routerLink="">
-                                <h2>Oppo a</h2>
+                            <a>
+                                <h2>{{prod.name}}</h2>
                             </a>
-                            <a routerLink="">
-                                <p class="price"><b>Price:</b> $12</p>
+                            <a>
+                                <p class="price"><b>Price: Rs.</b>{{prod.price}}</p>
                             </a>
-                            <a routerLink="">
-                                <p><b>Quantity:</b> 1</p>
+                            <a>
+                                <p><b>Quantity:</b>{{prod.quantity}}</p>
                             </a>
-                            <a routerLink="">
+                            <!-- <a>
                                 <p><b>Ordered On:</b> 1 Jan 2020</p>
+                            </a> -->
+                            <a>
+                                <p><b>Buyer Name:</b>{{prod.buyerName}}</p>
                             </a>
-                            <a routerLink="">
-                                <p><b>Buyer Name:</b> Rupam Laha</p>
+                            <a>
+                                <p><b>Buyer Email:</b>{{prod.buyerEmail}}</p>
                             </a>
-                            <a routerLink="">
-                                <p><b>Buyer Address:</b> West Bengal</p>
+                            <a>
+                                <p><b>Buyer Address:</b>{{prod.buyerAddress}}</p>
                             </a>
                         </td>
                         <td style="width: 20%">
-                            <p>Order Stauts</p>
+                            <p>Order Status</p>
 
-                            <!-- <div class="custom-select" style="width:200px;"> -->
-                                <select>
-                                    <option value="pending" selected>Pending</option>
-                                    <option value="shipped">Shipped</option>
-                                </select>
-                            <!-- </div> -->
+                            <form [formGroup]="contactForm" (ngSubmit)="submit(prod.buyerEmail, prod.id)">
+ 
+                                <p>
+                                  <select formControlName="orderStatus">
+                                    <option ngValue="null" hidden>Select</option>
+                                    <option ngValue="Pending">Pending</option>
+                                    <option ngValue="Shipped">Shipped</option>
+                                  </select>
+                                 
+                                  <button type="submit">Submit</button>
+                                </p>
+                                 
+                                </form>
+
+                                <p>{{prod.orderStatus}}</p>
+
                         </td>
                     </tr>
                 </tbody>

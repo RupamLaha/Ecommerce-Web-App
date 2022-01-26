@@ -6,17 +6,30 @@
             <th>Order History</th>
         </tr>
     </thead>
+
+    <thead *ngIf="showEmptyIcon">
+        <tr>
+          <th style="text-align: center;">
+            <img src="/assets/images/empty-wishlist.png" style="max-width: 250px; max-height: 250px;" alt="">
+            <h4>Opps..looks like you didn't buy any thing!</h4><br><br>
+            <button routerLink="/user-home" class="buy">Shop</button>
+          </th>
+        </tr>
+    </thead>
+
     <tbody>
       <tr>
         <td>
-            <div class="row">
+            <div class="row" *ngFor="let prod of orderHistoryArr">
                 <div class="col-3 d-flex justify-content-center">
-                    <a routerLink="/user-product-detail"><img src="assets/images/mobile.jpg" alt="Denim Jeans" style="width:100%"></a>
+                    <a [routerLink]="['/user-product-detail', prod.id]" ><img src="assets/images/mobile.jpg" alt="Denim Jeans" style="width:100%"></a>
                 </div>
                 <div class="col-9 prodDetailColumn">
-                    <a routerLink="/user-product-detail"><h2>Oppo a</h2></a>
-                    <a routerLink="/user-product-detail"><h4 class="price">$12</h4></a>
-                    <a routerLink="/user-product-detail"><p>Product Description</p></a>
+                    <a [routerLink]="['/user-product-detail', prod.id]" ><h2>{{prod.name}}</h2></a>
+                    <a [routerLink]="['/user-product-detail', prod.id]"><h6 class="price">Rs.{{prod.price}}</h6></a>
+                    <a [routerLink]="['/user-product-detail', prod.id]"><p>{{prod.description}}</p></a>
+                    <p>Quantity: {{prod.quantity}}</p>
+                    <p>Order Status: {{prod.orderStatus}}</p>
                 </div>
             </div>
         </td>

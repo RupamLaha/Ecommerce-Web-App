@@ -9,6 +9,13 @@
         <h3>Rs.{{product?.price}}</h3>
         <p>{{product?.description}}</p>
         <p><button routerLink="/user-cart" #addToCart (click)="addToCartClicked(addToCart)" [id]="product?.id">Add to Cart</button></p>
-        <p><button class="wishlist" routerLink="/user-wishlist" #addToWish (click)="addToWishClicked(addToWish)" [id]="product?.id">Add to Wishlist</button></p>
+        <p>
+            <button *ngIf="wishlistBtnShow" class="wishlist" #addToWish (click)="addToWishClicked(addToWish)" [id]="product?.id">Add to Wishlist</button>
+            <!-- <button type="submit" *ngIf="!wishlistBtnShow" class="wishlist" [id]="product?.id" [disabled]="alreadyWishlistBtn">Already in Wishlist</button> -->
+            <small *ngIf="!wishlistBtnShow" style="color: red;">Already in Wishlist</small>
+        </p>
+        
     </div>
 </div>
+
+<!-- routerLink="/user-wishlist" -->

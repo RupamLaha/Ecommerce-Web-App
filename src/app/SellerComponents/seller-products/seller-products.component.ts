@@ -12,10 +12,18 @@ export class SellerProductsComponent implements OnInit {
 
   adminProductsArr: Products[] = []
 
+  showEmptyIcon: boolean = true
+
   constructor(private ecomService: EcommerceService, private router: Router) { }
 
   ngOnInit(): void {
     this.adminProductsArr = this.ecomService.getProducts();
+
+    if(this.adminProductsArr.length === 0){
+      this.showEmptyIcon = true
+    }else{
+      this.showEmptyIcon = false
+    }
   }
 
   editProduct(editBtn: HTMLButtonElement){
