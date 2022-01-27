@@ -27,8 +27,8 @@ export class SellerAddProductComponent implements OnInit {
     description: ["", [Validators.required, Validators.pattern(this.nameRegx)]]
   })
 
-  onSubmit(){
-    if(this.newProductAddingForm.valid){
+  onSubmit() {
+    if (this.newProductAddingForm.valid) {
       console.log(this.newProductAddingForm.value);
       var tempProd: Products = this.newProductAddingForm.value;
       this.ecomService.adminAddProducts(tempProd.id, tempProd.name, tempProd.price, tempProd.description);
@@ -44,7 +44,7 @@ export class SellerAddProductComponent implements OnInit {
 
       this.router.navigate(['/seller-add-product']);
 
-    }else{
+    } else {
       alert("Invalid product")
     }
 

@@ -8,7 +8,7 @@ import { EcommerceService } from 'src/app/ecommerce.service';
 })
 export class UserProfileComponent implements OnInit {
 
-  name: string =  ""
+  name: string = ""
   email: string = ""
   address: string = ""
 
@@ -20,7 +20,7 @@ export class UserProfileComponent implements OnInit {
     this.address = this.ecoService.getUser().address
   }
 
-  onLogOut(){
+  onLogOut() {
     this.ecoService.userLogout()
   }
 

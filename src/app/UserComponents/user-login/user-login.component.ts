@@ -22,7 +22,7 @@ export class UserLoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(){
+  onSubmit() {
     let email = this.loginForm.get('email')?.value;
     let pass = this.loginForm.get('password')?.value;
 
@@ -31,7 +31,7 @@ export class UserLoginComponent implements OnInit {
 
     let temp = this.ecomService.loginVerify(email, pass);
 
-    if(temp){
+    if (temp) {
       this.router.navigate(['/user-home']);
     }
   }

@@ -10,17 +10,6 @@ import { EcommerceService } from 'src/app/ecommerce.service';
 })
 export class UserWishlistComponent implements OnInit {
 
-  // wishListArr = [
-  //   {name: "Oppo a", price: "$12", description: "Some text about the mobile.."},
-  //   {name: "Oppo b", price: "$13", description: "Some text about the mobile.."},
-  //   {name: "Oppo c", price: "$14", description: "Some text about the mobile.."},
-  //   {name: "Oppo d", price: "$15", description: "Some text about the mobile.."},
-  //   {name: "Oppo a", price: "$12", description: "Some text about the mobile.."},
-  //   {name: "Oppo b", price: "$13", description: "Some text about the mobile.."},
-  //   {name: "Oppo c", price: "$14", description: "Some text about the mobile.."},
-  //   {name: "Oppo d", price: "$15", description: "Some text about the mobile.."}
-  // ]
-
   wishListArr: Products[] = []
 
   showEmptyIcon: boolean = true
@@ -30,19 +19,19 @@ export class UserWishlistComponent implements OnInit {
   ngOnInit(): void {
     this.wishListArr = this.ecomService.getWishlistArr()
 
-    if(this.wishListArr.length === 0){
+    if (this.wishListArr.length === 0) {
       this.showEmptyIcon = true
-    }else{
+    } else {
       this.showEmptyIcon = false
     }
   }
 
-  addToCartClicked(btn: HTMLButtonElement){
+  addToCartClicked(btn: HTMLButtonElement) {
     this.ecomService.addProdToCart(btn.id)
     this.router.navigate(['/user-cart'])
   }
 
-  removeFormWishClicked(btn: HTMLButtonElement){
+  removeFormWishClicked(btn: HTMLButtonElement) {
     this.ecomService.removeFromWishlist(btn.id)
     this.ngOnInit()
   }

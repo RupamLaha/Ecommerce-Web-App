@@ -13,13 +13,13 @@ export class SellerOrdersComponent implements OnInit {
 
   // contactForm:FormGroup;
 
-  adminOderBook: AdminOrderBookModel[] = [] 
+  adminOderBook: AdminOrderBookModel[] = []
 
   showEmptyIcon: boolean = true
 
   // orderStatusUpdate = "null"
 
-  constructor(private ecomService: EcommerceService, private fb:FormBuilder) { }
+  constructor(private ecomService: EcommerceService, private fb: FormBuilder) { }
 
   contactForm = this.fb.group({
     orderStatus: ["null"]
@@ -30,18 +30,15 @@ export class SellerOrdersComponent implements OnInit {
 
     this.adminOderBook = this.ecomService.getAdminOrderBook()
 
-    if(this.adminOderBook.length === 0){
+    if (this.adminOderBook.length === 0) {
       this.showEmptyIcon = true
-    }else{
+    } else {
       this.showEmptyIcon = false
     }
 
-    // this.contactForm.setValue({
-    //   orderStatus: this.orderStatusUpdate
-    // })
   }
 
-  submit(buyeremail: string, prodId: string){
+  submit(buyeremail: string, prodId: string) {
     console.log("Submitted")
     console.log(this.contactForm.value)
 
@@ -51,15 +48,5 @@ export class SellerOrdersComponent implements OnInit {
 
     this.ecomService.adminUpdateOrderStatus(buyeremail, status, prodId)
 
-    // this.orderStatusUpdate = status
-
-    // this.contactForm.setValue({
-    //   orderStatus: this.orderStatusUpdate
-    // })
-
-    // console.log(this.contactForm.value)
-    // console.log(this.contactForm.get('orderStatus')?.value)
-    
-    // this.ngOnInit()
   }
 }

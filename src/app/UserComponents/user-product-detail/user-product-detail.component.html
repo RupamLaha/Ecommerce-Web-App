@@ -1,20 +1,21 @@
 <br>
 
 <div class="row">
-    <div class="col-5 d-flex justify-content-center"> 
+    <div class="col-5 d-flex justify-content-center">
         <img src="assets/images/mobile.jpg" alt="image">
     </div>
     <div class="col-7 d-flex justify-content-center flex-column column">
         <h1>{{product?.name}}</h1>
         <h3>Rs.{{product?.price}}</h3>
         <p>{{product?.description}}</p>
-        <p><button routerLink="/user-cart" #addToCart (click)="addToCartClicked(addToCart)" [id]="product?.id">Add to Cart</button></p>
+        <p><button routerLink="/user-cart" #addToCart (click)="addToCartClicked(addToCart)" [id]="product?.id">Add to
+                Cart</button></p>
         <p>
-            <button *ngIf="wishlistBtnShow" class="wishlist" #addToWish (click)="addToWishClicked(addToWish)" [id]="product?.id">Add to Wishlist</button>
-            <!-- <button type="submit" *ngIf="!wishlistBtnShow" class="wishlist" [id]="product?.id" [disabled]="alreadyWishlistBtn">Already in Wishlist</button> -->
+            <button *ngIf="wishlistBtnShow" class="wishlist" #addToWish (click)="addToWishClicked(addToWish)"
+                [id]="product?.id">Add to Wishlist</button>
             <small *ngIf="!wishlistBtnShow" style="color: red;">Already in Wishlist</small>
         </p>
-        
+
     </div>
 </div>
 

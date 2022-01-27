@@ -32,7 +32,7 @@ export class SellerEditProductComponent implements OnInit {
   ngOnInit(): void {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     console.log("paramMap id = " + id);
-    if(id != null){
+    if (id != null) {
       let currentProduct = this.ecomService.adminEditProductReq(id);
 
       this.newProductAddingForm.setValue({
@@ -44,7 +44,7 @@ export class SellerEditProductComponent implements OnInit {
     }
   }
 
-  onSubmit(){
+  onSubmit() {
     // console.log('Subit button clicked');
 
     let id = this.newProductAddingForm.get('id')?.value

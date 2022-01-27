@@ -4,14 +4,19 @@
 <div class="row">
     <div class="col-md-3 col-sm-6 column" *ngFor="let prod of productsArr">
         <div class="card">
-            <a [routerLink]="['/user-product-detail', prod.id]" [id]="prod.id"><img src="assets/images/mobile.jpg" alt="Denim Jeans" style="width:100%"></a>
-            <a [routerLink]="['/user-product-detail', prod.id]" [id]="prod.id"><h2>{{prod.name}}</h2></a>
-            <a [routerLink]="['/user-product-detail', prod.id]" [id]="prod.id"><p class="price">Rs.{{prod.price}}</p></a>
-            <a [routerLink]="['/user-product-detail', prod.id]" [id]="prod.id"><p>{{prod.description}}</p></a>
-            <p><button routerLink="/user-cart" [id]="prod.id" #addToCart (click)="onClick(addToCart)">Add to Cart</button></p>
-            <!-- <p><button routerLink="/user-cart">Add to Wishlist</button></p> -->
+            <a [routerLink]="['/user-product-detail', prod.id]" [id]="prod.id"><img src="assets/images/mobile.jpg"
+                    alt="Denim Jeans" style="width:100%"></a>
+            <a [routerLink]="['/user-product-detail', prod.id]" [id]="prod.id">
+                <h2>{{prod.name}}</h2>
+            </a>
+            <a [routerLink]="['/user-product-detail', prod.id]" [id]="prod.id">
+                <p class="price">Rs.{{prod.price}}</p>
+            </a>
+            <a [routerLink]="['/user-product-detail', prod.id]" [id]="prod.id">
+                <p>{{prod.description}}</p>
+            </a>
+            <p><button routerLink="/user-cart" [id]="prod.id" #addToCart (click)="onClick(addToCart)">Add to
+                    Cart</button></p>
         </div>
     </div>
 </div>
-
-<!-- [routerLink]="['user-product-detail', prod.id]" -->

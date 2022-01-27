@@ -1,18 +1,6 @@
-<!-- <h1>WowShop</h1> -->
-
-<!-- <ul>
-  <li><img src="assets/images/wowShop.png" alt=""></li>
-  <li style="float:right"><a routerLink="">Profile</a></li>
-  <li style="float:right"><a routerLink="">Cart</a></li>
-  <li style="float:right"><a routerLink="">Wishlist</a></li>
-  <li style="float:right"><a routerLink="/user-registration">Signup</a></li>
-  <li style="float:right"><a routerLink="/user-login">Login</a></li>
-  <li style="float:right"><input type="text" placeholder="Search.." name="search"></li>
-</ul> -->
-
 <div *ngIf="currentRouteBool; else elseBlock">
 
-<!-- seller navbar -->
+  <!-- admin navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark mb-3">
     <img src="assets/images/wowShop.png" class="navbar-brand" routerLink="/user-home">
     <a class="nav-link" routerLink="/user-login">User</a>
@@ -36,7 +24,7 @@
         </li>
       </ul>
     </div>
-  
+
   </nav>
 
 </div>
@@ -78,7 +66,7 @@
         </li>
       </ul>
     </div>
-  
+
   </nav>
 
 </ng-template>

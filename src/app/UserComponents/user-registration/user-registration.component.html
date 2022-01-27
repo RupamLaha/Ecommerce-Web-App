@@ -1,49 +1,55 @@
-
 <br><br>
 
 
-    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
 
-        <div class="form-group">
-            <h2>Register</h2>
-        </div>
+  <div class="form-group">
+    <h2>Register</h2>
+  </div>
 
-        <div class="form-group">
-          <label for="exampleInputEmail1"><b>Email</b></label>
-          <input [class.is-invalid]="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched" formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-          <!-- <small [class.d-none]="registrationForm.get('email')?.valid || registrationForm.get('email')?.untouched" id="emailHelp" class="text-danger">Email is required</small> -->
-          
-          <div *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched">
-            <small *ngIf="registrationForm.get('email')?.errors?.['required']" class="text-danger">Email is required</small>
-            <small *ngIf="registrationForm.get('email')?.errors?.['pattern']" class="text-danger">Please enter valid email eg. harish@gmail.com</small>
-          </div>
-
-        </div>
-
-        <div class="form-group">
-            <label for="exampleInputName1"><b>Name</b></label>
-            <input [class.is-invalid]="registrationForm.get('name')?.invalid && registrationForm.get('name')?.touched" formControlName="name" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="nameHelp" placeholder="Enter name">
-            <small [class.d-none]="registrationForm.get('name')?.valid || registrationForm.get('name')?.untouched" id="nameHelp" class="text-danger">Name is required</small>
-        </div>
-
-        <div class="form-group">
-          <label for="exampleInputPassword1"><b>Password</b></label>
-          <input [class.is-invalid]="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched" formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-          <!-- <small [class.d-none]="registrationForm.get('password')?.valid || registrationForm.get('password')?.untouched" id="passwordHelp" class="text-danger">Password is required</small> -->
-            
-          <div *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched">
-            <small *ngIf="registrationForm.get('password')?.errors?.['required']" class="text-danger">Password is required</small>
-            <small *ngIf="registrationForm.get('password')?.errors?.['minlength']" class="text-danger">Password must be of length 4 or greater</small>
-          </div>
-
-        </div>
-
-        <p>Already have account? <a routerLink="/user-login">Login</a></p>
-
-        <button type="submit" class="btn">Submit</button>
-
-      </form>
-
-      <!-- {{registrationForm.value | json}} -->
+  <div class="form-group">
+    <label for="exampleInputEmail1"><b>Email</b></label>
+    <input [class.is-invalid]="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched"
+      formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+      placeholder="Enter email">
 
 
+    <div *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched">
+      <small *ngIf="registrationForm.get('email')?.errors?.['required']" class="text-danger">Email is required</small>
+      <small *ngIf="registrationForm.get('email')?.errors?.['pattern']" class="text-danger">Please enter valid email eg.
+        harish@gmail.com</small>
+    </div>
+
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputName1"><b>Name</b></label>
+    <input [class.is-invalid]="registrationForm.get('name')?.invalid && registrationForm.get('name')?.touched"
+      formControlName="name" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="nameHelp"
+      placeholder="Enter name">
+    <small [class.d-none]="registrationForm.get('name')?.valid || registrationForm.get('name')?.untouched" id="nameHelp"
+      class="text-danger">Name is required</small>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputPassword1"><b>Password</b></label>
+    <input [class.is-invalid]="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched"
+      formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+
+
+    <div *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched">
+      <small *ngIf="registrationForm.get('password')?.errors?.['required']" class="text-danger">Password is
+        required</small>
+      <small *ngIf="registrationForm.get('password')?.errors?.['minlength']" class="text-danger">Password must be of
+        length 4 or greater</small>
+    </div>
+
+  </div>
+
+  <p>Already have account? <a routerLink="/user-login">Login</a></p>
+
+  <button type="submit" class="btn">Submit</button>
+
+</form>
+
+<!-- {{registrationForm.value | json}} -->

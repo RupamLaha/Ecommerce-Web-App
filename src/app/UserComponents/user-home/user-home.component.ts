@@ -28,7 +28,7 @@ export class UserHomeComponent implements OnInit {
     this.productsArr = this.ecomService.getProducts();
   }
 
-  onClick(addToCart: HTMLButtonElement){
+  onClick(addToCart: HTMLButtonElement) {
 
     let prodId = addToCart.id
     this.ecomService.addProdToCart(prodId);

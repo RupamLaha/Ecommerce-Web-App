@@ -6,17 +6,14 @@ import { EcommerceService } from '../ecommerce.service';
 @Injectable({
   providedIn: 'root'
 })
+
+//route guard for user side...
+
 export class RouteGuardGuard implements CanActivate {
 
   constructor(private ecomService: EcommerceService, private router: Router){
 
   }
-
-  // canActivate(
-  //   route: ActivatedRouteSnapshot,
-  //   state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-  //   return true;
-  // }
 
   canActivate(): boolean {
       if(this.ecomService.checkIfUserLoggedIn()){

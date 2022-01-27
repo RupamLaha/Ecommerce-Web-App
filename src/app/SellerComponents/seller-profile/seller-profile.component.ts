@@ -13,7 +13,7 @@ export class SellerProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onAdminLogout(){
+  onAdminLogout() {
     this.ecomService.adminLogout()
   }
 

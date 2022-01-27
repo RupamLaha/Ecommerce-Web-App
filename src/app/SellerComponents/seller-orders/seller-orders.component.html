@@ -12,18 +12,18 @@
 
                 <thead *ngIf="showEmptyIcon">
                     <tr>
-                      <th style="text-align: center;">
-                        <img src="/assets/images/empty-wishlist.png" style="max-width: 250px; max-height: 250px;" alt="">
-                        <h4>Opps..no order to show!</h4><br><br>
-                      </th>
+                        <th style="text-align: center;">
+                            <img src="/assets/images/empty-wishlist.png" style="max-width: 250px; max-height: 250px;"
+                                alt="">
+                            <h4>Opps..no order to show!</h4><br><br>
+                        </th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <tr *ngFor="let prod of adminOderBook">
                         <td style="width: 20%">
-                            <a><img src="assets/images/mobile.jpg" alt="Denim Jeans"
-                                    style="width:100%"></a>
+                            <a><img src="assets/images/mobile.jpg" alt="Denim Jeans" style="width:100%"></a>
                         </td>
                         <td style="width: 60%">
                             <a>
@@ -52,20 +52,20 @@
                             <p>Order Status</p>
 
                             <form [formGroup]="contactForm" (ngSubmit)="submit(prod.buyerEmail, prod.id)">
- 
-                                <p>
-                                  <select formControlName="orderStatus">
-                                    <option ngValue="null" hidden>Select</option>
-                                    <option ngValue="Pending">Pending</option>
-                                    <option ngValue="Shipped">Shipped</option>
-                                  </select>
-                                 
-                                  <button type="submit">Submit</button>
-                                </p>
-                                 
-                                </form>
 
-                                <p>{{prod.orderStatus}}</p>
+                                <p>
+                                    <select formControlName="orderStatus">
+                                        <option ngValue="null" hidden>Select</option>
+                                        <option ngValue="Pending">Pending</option>
+                                        <option ngValue="Shipped">Shipped</option>
+                                    </select>
+
+                                    <button type="submit">Submit</button>
+                                </p>
+
+                            </form>
+
+                            <p [style.color]="prod.orderStatus == 'Pending' ? 'red' : 'green'">{{prod.orderStatus}}</p>
 
                         </td>
                     </tr>

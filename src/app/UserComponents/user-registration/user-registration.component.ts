@@ -25,8 +25,8 @@ export class UserRegistrationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(){
-    if(this.registrationForm.valid){
+  onSubmit() {
+    if (this.registrationForm.valid) {
       let tempEmail = this.registrationForm.get('email')?.value
       let tempName = this.registrationForm.get('name')?.value
       let tempPass = this.registrationForm.get('password')?.value

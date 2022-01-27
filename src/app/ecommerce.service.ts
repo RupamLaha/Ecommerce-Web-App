@@ -25,25 +25,25 @@ export class EcommerceService {
     console.log(this.usersArr);
   }
 
-  // admin functions...
+  //admin functions..
 
-  adminLogin(email: string, pass: string): boolean{
-    
-    if(email === "laha@gmail.com"){
-      if(pass === "1234"){
-        localStorage.setItem("adminEmail",email)
+  adminLogin(email: string, pass: string): boolean {
+
+    if (email === "laha@gmail.com") {
+      if (pass === "1234") {
+        localStorage.setItem("adminEmail", email)
         return true
-      }else{
+      } else {
         alert("Incorrect password!")
         return false
       }
-    }else{
+    } else {
       alert("User not found!")
       return false
     }
   }
 
-  adminLogout(){
+  adminLogout() {
     localStorage.removeItem("adminEmail")
   }
 
@@ -79,29 +79,29 @@ export class EcommerceService {
     // console.log(index);
   }
 
-  getAdminOrderBook(): AdminOrderBookModel[]{
+  getAdminOrderBook(): AdminOrderBookModel[] {
     return this.adminOrderArr
   }
 
-  adminUpdateOrderStatus(buyeremail: string, status: string, prodId: string){
+  adminUpdateOrderStatus(buyeremail: string, status: string, prodId: string) {
 
     //making chang in the user order history arr..
     let index = this.usersArr.findIndex(u => u.email === buyeremail)
 
     let prodIndex = this.usersArr[index].orderedHistory.findIndex(p => p.id === prodId)
 
-    if(status === "Shipped"){
+    if (status === "Shipped") {
       this.usersArr[index].orderedHistory[prodIndex].orderStatus = OrderStatus.Shipped
-    }else{
+    } else {
       this.usersArr[index].orderedHistory[prodIndex].orderStatus = OrderStatus.Pending
     }
 
     //making change in the adminOrder arr....
     let adminProdIndex = this.adminOrderArr.findIndex(p => p.id === prodId)
 
-    if(status === "Shipped"){
+    if (status === "Shipped") {
       this.adminOrderArr[adminProdIndex].orderStatus = OrderStatus.Shipped
-    }else{
+    } else {
       this.adminOrderArr[adminProdIndex].orderStatus = OrderStatus.Pending
     }
   }
@@ -137,8 +137,8 @@ export class EcommerceService {
     }
   }
 
-  getUser(): User{
-    
+  getUser(): User {
+
     let localEmail = localStorage.getItem("email");
 
     let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
@@ -147,43 +147,43 @@ export class EcommerceService {
 
   }
 
-  addToWishlist(prodId: string){
+  addToWishlist(prodId: string) {
 
     let index = this.productsArr.findIndex(p => p.id === prodId)
 
     let tempProd: Products = this.productsArr[index]
 
     let localEmail = localStorage.getItem("email");
-    
+
     let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
 
     //checking whether this product already exists in the cart or not..
     let duplicateProdIndex = this.usersArr[userIndex].wishlist.findIndex(p => p.id === prodId)
 
-    if(duplicateProdIndex === -1){
+    if (duplicateProdIndex === -1) {
       this.usersArr[userIndex].wishlist.push(tempProd);
-    }else{
-      
+    } else {
+
     }
   }
 
-  removeFromWishlist(prodId: string){
+  removeFromWishlist(prodId: string) {
 
     let localEmail = localStorage.getItem("email");
-    
+
     let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
 
     //checking whether this product already exists in the cart or not..
     let prodIndex = this.usersArr[userIndex].wishlist.findIndex(p => p.id === prodId)
 
-    if(prodIndex !== -1){
-      this.usersArr[userIndex].wishlist.splice(prodIndex,1);
-    }else{
-      
+    if (prodIndex !== -1) {
+      this.usersArr[userIndex].wishlist.splice(prodIndex, 1);
+    } else {
+
     }
   }
 
-  getWishlistArr(): Products[]{
+  getWishlistArr(): Products[] {
     let localEmail = localStorage.getItem("email");
 
     let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
@@ -191,7 +191,7 @@ export class EcommerceService {
     return this.usersArr[userIndex].wishlist
   }
 
-  addProdToCart(prodId: string){
+  addProdToCart(prodId: string) {
 
     let index = this.productsArr.findIndex(p => p.id === prodId)
 
@@ -200,27 +200,27 @@ export class EcommerceService {
     let tempCartProduct: Cart = new Cart(tempProd)
 
     let localEmail = localStorage.getItem("email");
-    
+
     let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
 
     //checking whether this product already exists in the cart or not..
     let duplicateProdIndex = this.usersArr[userIndex].cart.findIndex(p => p.product.id === prodId)
 
-    if(duplicateProdIndex !== -1){
-      if(this.usersArr[userIndex].cart[duplicateProdIndex].count === 0){
+    if (duplicateProdIndex !== -1) {
+      if (this.usersArr[userIndex].cart[duplicateProdIndex].count === 0) {
         this.removeFromCart(prodId)
-      }else{
+      } else {
         this.usersArr[userIndex].cart[duplicateProdIndex].count += 1
       }
-    }else{
+    } else {
       this.usersArr[userIndex].cart.push(tempCartProduct);
     }
 
   }
 
-  incrementOrDecrement(prodId: string, sign: string){
+  incrementOrDecrement(prodId: string, sign: string) {
 
-    if(sign === '+'){
+    if (sign === '+') {
       // this.addProdToCart(prodId)
 
       let index = this.productsArr.findIndex(p => p.id === prodId)
@@ -230,17 +230,17 @@ export class EcommerceService {
       let tempCartProduct: Cart = new Cart(tempProd)
 
       let localEmail = localStorage.getItem("email");
-      
+
       let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
 
       //checking whether this product already exists in the cart or not..
       let duplicateProdIndex = this.usersArr[userIndex].cart.findIndex(p => p.product.id === prodId)
 
-      if(duplicateProdIndex !== -1){
+      if (duplicateProdIndex !== -1) {
         this.usersArr[userIndex].cart[duplicateProdIndex].count += 1
       }
 
-    }else{
+    } else {
 
       let index = this.productsArr.findIndex(p => p.id === prodId)
 
@@ -249,16 +249,16 @@ export class EcommerceService {
       let tempCartProduct: Cart = new Cart(tempProd)
 
       let localEmail = localStorage.getItem("email");
-      
+
       let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
 
       //checking whether this product already exists in the cart or not..
       let duplicateProdIndex = this.usersArr[userIndex].cart.findIndex(p => p.product.id === prodId)
 
-      if(duplicateProdIndex !== -1){
-        if(this.usersArr[userIndex].cart[duplicateProdIndex].count === 1){
+      if (duplicateProdIndex !== -1) {
+        if (this.usersArr[userIndex].cart[duplicateProdIndex].count === 1) {
           this.removeFromCart(prodId)
-        }else{
+        } else {
           this.usersArr[userIndex].cart[duplicateProdIndex].count -= 1
         }
       }
@@ -267,7 +267,7 @@ export class EcommerceService {
 
   }
 
-  removeFromCart(prodId: string){
+  removeFromCart(prodId: string) {
     let localEmail = localStorage.getItem("email");
 
     let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
@@ -276,12 +276,12 @@ export class EcommerceService {
 
     console.log(this.usersArr[userIndex].cart)
 
-    this.usersArr[userIndex].cart.splice(prodIndexInCartArr,1)
+    this.usersArr[userIndex].cart.splice(prodIndexInCartArr, 1)
 
     console.log(this.usersArr[userIndex].cart)
   }
 
-  totalCartPrice(): {subTotal: number, allTotal: number, deliveryChrg: number}{
+  totalCartPrice(): { subTotal: number, allTotal: number, deliveryChrg: number } {
     var subTotal = 0
     var deliveryChrg = 0
 
@@ -291,24 +291,24 @@ export class EcommerceService {
 
     let cartArr = this.usersArr[userIndex].cart
 
-    for(let cartItem of cartArr){
+    for (let cartItem of cartArr) {
       let total = cartItem.product.price * cartItem.count
       subTotal += total
     }
 
     var allTotal = 0
-    if(cartArr.length === 0){
+    if (cartArr.length === 0) {
       allTotal = deliveryChrg + subTotal
-    }else{
+    } else {
       deliveryChrg = 5
       allTotal = deliveryChrg + subTotal
     }
 
-    return {subTotal, allTotal, deliveryChrg}
+    return { subTotal, allTotal, deliveryChrg }
 
   }
 
-  getProduct(id: string): Products{
+  getProduct(id: string): Products {
 
     let index = this.productsArr.findIndex(p => p.id === id)
 
@@ -316,13 +316,13 @@ export class EcommerceService {
 
   }
 
-  productBuy(){
+  productBuy() {
     //add products to order history of user and remove from cart...
     let localEmail = localStorage.getItem("email");
 
     let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
 
-    for(let prod of this.usersArr[userIndex].cart){
+    for (let prod of this.usersArr[userIndex].cart) {
       let tempProdId = prod.product.id
       let tempProdName = prod.product.name
       let tempProdPrice = prod.product.price
@@ -348,7 +348,7 @@ export class EcommerceService {
 
   }
 
-  getUserOrderHistory(): OrderedProduct[]{
+  getUserOrderHistory(): OrderedProduct[] {
     let localEmail = localStorage.getItem("email");
 
     let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
@@ -356,7 +356,7 @@ export class EcommerceService {
     return this.usersArr[userIndex].orderedHistory
   }
 
-  userLogout(){
+  userLogout() {
     localStorage.removeItem("email");
   }
 
@@ -364,11 +364,11 @@ export class EcommerceService {
 
   // for route guards...
 
-  checkIfAdminLoggedIn(){
+  checkIfAdminLoggedIn() {
     return !!localStorage.getItem("adminEmail")
   }
 
-  checkIfUserLoggedIn(){
+  checkIfUserLoggedIn() {
     return !!localStorage.getItem("email")
   }
 

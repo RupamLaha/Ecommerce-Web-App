@@ -18,9 +18,9 @@ export class UserOrderHistoryComponent implements OnInit {
   ngOnInit(): void {
     this.orderHistoryArr = this.ecomService.getUserOrderHistory()
 
-    if(this.orderHistoryArr.length === 0){
+    if (this.orderHistoryArr.length === 0) {
       this.showEmptyIcon = true
-    }else{
+    } else {
       this.showEmptyIcon = false
     }
 

@@ -1,10 +1,9 @@
-
 <br><br>
 
 
 <p>
     <ngb-alert [dismissible]="true" type='success' [ngStyle]="{'display':displayStyle}">
-      <strong>Product successfully added.</strong>
+        <strong>Product successfully added.</strong>
     </ngb-alert>
 </p>
 
@@ -16,50 +15,67 @@
 
     <div class="form-group">
         <label for="exampleInputId"><b>Product Id</b></label>
-        <input [class.is-invalid]="newProductAddingForm.get('id')?.invalid && newProductAddingForm.get('id')?.touched" formControlName="id" type="text" class="form-control" id="exampleInputId" aria-describedby="idHelp" placeholder="Enter id">
-        
+        <input [class.is-invalid]="newProductAddingForm.get('id')?.invalid && newProductAddingForm.get('id')?.touched"
+            formControlName="id" type="text" class="form-control" id="exampleInputId" aria-describedby="idHelp"
+            placeholder="Enter id">
+
         <div *ngIf="newProductAddingForm.get('id')?.invalid && newProductAddingForm.get('id')?.touched">
-            <small *ngIf="newProductAddingForm.get('id')?.errors?.['required']" class="text-danger">Id is required</small>
-            <small *ngIf="newProductAddingForm.get('id')?.errors?.['pattern']" class="text-danger">Id should contain only numbers eg. 1234</small>
+            <small *ngIf="newProductAddingForm.get('id')?.errors?.['required']" class="text-danger">Id is
+                required</small>
+            <small *ngIf="newProductAddingForm.get('id')?.errors?.['pattern']" class="text-danger">Id should contain
+                only numbers eg. 1234</small>
         </div>
     </div>
 
     <div class="form-group">
         <label for="exampleInputName1"><b>Product Name</b></label>
-        <input [class.is-invalid]="newProductAddingForm.get('name')?.invalid && newProductAddingForm.get('name')?.touched" formControlName="name" type="text" class="form-control" id="exampleInputPrice1" aria-describedby="nameHelp" placeholder="Enter product name">
-        
+        <input
+            [class.is-invalid]="newProductAddingForm.get('name')?.invalid && newProductAddingForm.get('name')?.touched"
+            formControlName="name" type="text" class="form-control" id="exampleInputPrice1" aria-describedby="nameHelp"
+            placeholder="Enter product name">
+
         <div *ngIf="newProductAddingForm.get('name')?.invalid && newProductAddingForm.get('name')?.touched">
-            <small *ngIf="newProductAddingForm.get('name')?.errors?.['required']" class="text-danger">Name is required</small>
-            <small *ngIf="newProductAddingForm.get('name')?.errors?.['pattern']" class="text-danger">Name should contain only alphabets eg. Mobile</small>
+            <small *ngIf="newProductAddingForm.get('name')?.errors?.['required']" class="text-danger">Name is
+                required</small>
+            <small *ngIf="newProductAddingForm.get('name')?.errors?.['pattern']" class="text-danger">Name should contain
+                only alphabets eg. Mobile</small>
         </div>
     </div>
 
     <div class="form-group">
         <label for="exampleInputPrice1"><b>Product Price</b></label>
-        <input [class.is-invalid]="newProductAddingForm.get('price')?.invalid && newProductAddingForm.get('price')?.touched" formControlName="price" type="text" class="form-control" id="exampleInputPrice1" aria-describedby="priceHelp" placeholder="Enter product price">
-        
+        <input
+            [class.is-invalid]="newProductAddingForm.get('price')?.invalid && newProductAddingForm.get('price')?.touched"
+            formControlName="price" type="text" class="form-control" id="exampleInputPrice1"
+            aria-describedby="priceHelp" placeholder="Enter product price">
+
         <div *ngIf="newProductAddingForm.get('price')?.invalid && newProductAddingForm.get('price')?.touched">
-            <small *ngIf="newProductAddingForm.get('price')?.errors?.['required']" class="text-danger">Price is required</small>
-            <small *ngIf="newProductAddingForm.get('price')?.errors?.['pattern']" class="text-danger">Price should contain only numbers eg. 10000</small>
+            <small *ngIf="newProductAddingForm.get('price')?.errors?.['required']" class="text-danger">Price is
+                required</small>
+            <small *ngIf="newProductAddingForm.get('price')?.errors?.['pattern']" class="text-danger">Price should
+                contain only numbers eg. 10000</small>
         </div>
     </div>
 
     <div class="form-group">
         <label for="exampleInputProdDesc1"><b>Product Description</b></label>
         <!-- <input [class.is-invalid]="newProductAddingForm.get('description')?.invalid && newProductAddingForm.get('description')?.touched" formControlName="description" type="text" class="form-control" id="exampleInputProdDesc1" aria-describedby="descriptionHelp" placeholder="Enter product description"> -->
-        <textarea [class.is-invalid]="newProductAddingForm.get('description')?.invalid && newProductAddingForm.get('description')?.touched" formControlName="description" class="form-control" placeholder="Enter product description"></textarea>
-        
-        <div *ngIf="newProductAddingForm.get('description')?.invalid && newProductAddingForm.get('description')?.touched">
-            <small *ngIf="newProductAddingForm.get('description')?.errors?.['required']" class="text-danger">Description is required</small>
-            <small *ngIf="newProductAddingForm.get('description')?.errors?.['pattern']" class="text-danger">Description should contain only alphabets eg. Nice mobile</small>
+        <textarea
+            [class.is-invalid]="newProductAddingForm.get('description')?.invalid && newProductAddingForm.get('description')?.touched"
+            formControlName="description" class="form-control" placeholder="Enter product description"></textarea>
+
+        <div
+            *ngIf="newProductAddingForm.get('description')?.invalid && newProductAddingForm.get('description')?.touched">
+            <small *ngIf="newProductAddingForm.get('description')?.errors?.['required']" class="text-danger">Description
+                is required</small>
+            <small *ngIf="newProductAddingForm.get('description')?.errors?.['pattern']" class="text-danger">Description
+                should contain only alphabets eg. Nice mobile</small>
         </div>
     </div>
 
     <button type="submit" [disabled]="newProductAddingForm.valid ? false : true" class="btn">Submit</button>
     <button type="reset" class="btn">Reset</button>
 
-  </form>
+</form>
 
-  <!-- {{newProductAddingForm.value | json}} -->
-
-
+<!-- {{newProductAddingForm.value | json}} -->

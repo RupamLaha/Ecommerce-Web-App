@@ -35,29 +35,29 @@ export class UserProductDetailComponent implements OnInit {
 
     this.checkProdIfInWishlist()
 
-    if(this.productId !== null){
+    if (this.productId !== null) {
       this.product = this.ecomService.getProduct(this.productId)
     }
   }
 
-  addToCartClicked(btn: HTMLButtonElement){
+  addToCartClicked(btn: HTMLButtonElement) {
     this.ecomService.addProdToCart(btn.id)
     this.router.navigate(['/user-cart'])
   }
 
-  addToWishClicked(btn: HTMLButtonElement){
+  addToWishClicked(btn: HTMLButtonElement) {
     this.ecomService.addToWishlist(btn.id)
     this.ngOnInit()
     this.router.navigate(['/user-wishlist'])
   }
 
-  checkProdIfInWishlist(){
+  checkProdIfInWishlist() {
 
     let tempId = this.userWishlistArr.findIndex(p => p.id === this.productId)
 
-    if(tempId == -1){
+    if (tempId == -1) {
       this.wishlistBtnShow = true
-    }else{
+    } else {
       this.wishlistBtnShow = false
     }
 

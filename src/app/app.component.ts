@@ -20,15 +20,20 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
+
+    //to get the url link and check it is seller link or user link...
     this.router.events.subscribe(value => {
       var temp = this.router.url.toString()
       temp = temp.substring(1, temp.indexOf("-"))
       this.currentRoute = temp
       if(this.currentRoute === "seller"){
+        // if current link is of seller show seller navbar by making currentRouteBool true...
         this.currentRouteBool = true;
       }else{
+        // if current link is of user show user navbar by making currentRouteBool false...
         this.currentRouteBool = false;
       }
+
 
       let tempAdminEmail = localStorage.getItem("adminEmail");
 
@@ -38,6 +43,7 @@ export class AppComponent implements OnInit{
         this.showAdminNavOptions = false
       }
 
+      //conditions to whether to show the user navbar options...
       let tempUserEmail = localStorage.getItem("email");
 
       if(tempUserEmail !== null){

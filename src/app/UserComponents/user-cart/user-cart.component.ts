@@ -37,27 +37,27 @@ export class UserCartComponent implements OnInit {
     this.delivaryChrg = price.deliveryChrg
     this.cartItemCount = this.currUser.cart.length
 
-    if(this.cartItemCount !== 0){
+    if (this.cartItemCount !== 0) {
       this.buyBtnVisible = true
-    }else{
+    } else {
       this.buyBtnVisible = false
     }
   }
 
-  onRemove(remove: HTMLButtonElement){
+  onRemove(remove: HTMLButtonElement) {
     this.ecomService.removeFromCart(remove.id)
     console.log("remove clicked");
     this.ngOnInit()
   }
 
-  increDecre(btn: HTMLButtonElement){
+  increDecre(btn: HTMLButtonElement) {
     let action = btn.name
     let prodId = btn.id
     this.ecomService.incrementOrDecrement(prodId, action)
     this.ngOnInit()
   }
 
-  onBuy(){
+  onBuy() {
     this.ecomService.productBuy();
     this.ngOnInit()
     this.displayStyle = "block";

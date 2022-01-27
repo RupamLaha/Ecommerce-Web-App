@@ -19,19 +19,19 @@ export class SellerProductsComponent implements OnInit {
   ngOnInit(): void {
     this.adminProductsArr = this.ecomService.getProducts();
 
-    if(this.adminProductsArr.length === 0){
+    if (this.adminProductsArr.length === 0) {
       this.showEmptyIcon = true
-    }else{
+    } else {
       this.showEmptyIcon = false
     }
   }
 
-  editProduct(editBtn: HTMLButtonElement){
+  editProduct(editBtn: HTMLButtonElement) {
     console.log(editBtn.id);
-    this.router.navigate(['/seller-edit-product',editBtn.id]);
+    this.router.navigate(['/seller-edit-product', editBtn.id]);
   }
 
-  removeProduct(removeBtn: HTMLButtonElement){
+  removeProduct(removeBtn: HTMLButtonElement) {
     console.log(removeBtn.id);
     this.ecomService.adminDeleteProduct(removeBtn.id);
     this.ngOnInit()
