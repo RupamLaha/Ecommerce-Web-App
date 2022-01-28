@@ -19,11 +19,11 @@
         <tr>
             <td>
                 <div class="row" *ngFor="let prod of wishListArr">
-                    <div class="col-3 d-flex justify-content-center">
+                    <div class="col-md-3 col-12 d-flex justify-content-center">
                         <a [routerLink]="['/user-product-detail',prod.id]"><img src="assets/images/mobile.jpg"
                                 alt="Denim Jeans" style="width:100%"></a>
                     </div>
-                    <div class="col-9 prodDetailColumn">
+                    <div class="col-md-9 col-12 prodDetailColumn">
                         <a [routerLink]="['/user-product-detail',prod.id]">
                             <h2>{{prod.name}}</h2>
                         </a>

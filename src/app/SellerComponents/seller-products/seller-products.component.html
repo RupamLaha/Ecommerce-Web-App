@@ -26,29 +26,40 @@
 
                 <tbody>
                     <tr *ngFor="let prod of adminProductsArr">
-                        <td style="width: 20%">
-                            <a><img src="assets/images/mobile.jpg" alt="Denim Jeans" style="width:100%"></a>
-                        </td>
-                        <td style="width: 60%">
-                            <a>
-                                <h6>Id: {{prod.id}}</h6>
-                            </a>
-                            <a>
-                                <h2>{{prod.name}}</h2>
-                            </a>
-                            <a>
-                                <p class="price"><b>Price:</b> Rs.{{prod.price}}</p>
-                            </a>
-                            <a>
-                                <p><b>Product description:</b> {{prod.description}}</p>
-                            </a>
-                        </td>
-                        <td style="width: 20%">
-                            <p><button class="productActionBtnEdit" [id]="prod.id" #editBtn
-                                    (click)="editProduct(editBtn)">Edit</button></p>
-                            <p><button class="productActionBtnRemove" [id]="prod.id" #removeBtn
-                                    (click)="removeProduct(removeBtn)">Remove</button></p>
-                        </td>
+                        <!-- <div class="col-md-2 col-12"> -->
+                            <td style="width: 20%">
+                            <!-- <td> -->
+                                <a><img src="assets/images/mobile.jpg" alt="Denim Jeans" style="width:100%"></a>
+                            </td>
+                        <!-- </div> -->
+                        <!-- <div class="col-md-8 col-12"> -->
+                            <td style="width: 60%">
+                            <!-- <td> -->
+                                <a>
+                                    <h6>Id: {{prod.id}}</h6>
+                                </a>
+                                <a>
+                                    <h2>{{prod.name}}</h2>
+                                </a>
+                                <a>
+                                    <p class="price"><b>Price:</b> Rs.{{prod.price}}</p>
+                                </a>
+                                <a>
+                                    <p><b>Product description:</b> {{prod.description}}</p>
+                                </a>
+                            </td>
+                        <!-- </div> -->
+                        
+                        <!-- <div class="col-md-2 col-12"> -->
+                            <td style="width: 20%">
+                            <!-- <td> -->
+                                <p><button class="productActionBtnEdit" [id]="prod.id" #editBtn
+                                        (click)="editProduct(editBtn)">Edit</button></p>
+                                <p><button class="productActionBtnRemove" [id]="prod.id" #removeBtn
+                                        (click)="removeProduct(removeBtn)">Remove</button></p>
+                            </td>
+                        <!-- </div> -->
+                        
                     </tr>
                 </tbody>
             </table>

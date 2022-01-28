@@ -5,7 +5,11 @@
     <img src="assets/images/wowShop.png" class="navbar-brand" routerLink="/user-home">
     <a class="nav-link" routerLink="/user-login">User</a>
 
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <button class="navbar-toggler" type="button" (click)="toggleNav()" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav" [ngClass]="{'show':navBarOpen}">
       <ul class="navbar-nav" *ngIf="showAdminNavOptions">
         <!-- <li class="nav-item">
           <a class="nav-link" routerLink="/seller-login">Login</a>
@@ -38,7 +42,11 @@
     <img src="assets/images/wowShop.png" class="navbar-brand" routerLink="/user-home">
     <a class="nav-link" routerLink="/seller-login">Admin</a>
 
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <button class="navbar-toggler" type="button" (click)="toggleNav()" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav" [ngClass]="{'show':navBarOpen}">
       <ul class="navbar-nav" *ngIf="!showUserNavOptions">
         <li class="nav-item">
           <a class="nav-link" routerLink="/user-login">Login</a>

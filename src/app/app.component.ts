@@ -15,6 +15,8 @@ export class AppComponent implements OnInit{
 
   showUserNavOptions: boolean = false;
 
+  navBarOpen = false;
+
   constructor(private router: Router){
       
   }
@@ -53,5 +55,9 @@ export class AppComponent implements OnInit{
       }
       // console.log(temp);
     })
+  }
+
+  toggleNav(){
+    this.navBarOpen = !this.navBarOpen
   }
 }

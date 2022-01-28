@@ -2,7 +2,7 @@
 
   <div class="row">
 
-    <div class="col-7">
+    <div class="col-lg-7">
 
       <table class="table">
         <thead>
@@ -16,11 +16,11 @@
           <tr>
             <td>
               <div class="row prodRow" *ngFor="let prod of currUser?.cart">
-                <div class="col-3 d-flex justify-content-center">
+                <div class="col-md-3 col-12 d-flex justify-content-center">
                   <a [routerLink]="['/user-product-detail', prod.product.id]"><img src="assets/images/mobile.jpg"
                       alt="Denim Jeans" style="width:100%"></a>
                 </div>
-                <div class="col-6 prodDetailColumn">
+                <div class="col-md-6 col-10 prodDetailColumn">
                   <a [routerLink]="['/user-product-detail', prod.product.id]">
                     <h3>{{prod.product.name}}</h3>
                   </a>
@@ -29,7 +29,7 @@
                   </a>
                   <p><button #remove (click)="onRemove(remove)" [id]="prod.product.id">Remove</button></p>
                 </div>
-                <div class="col-3 prodCountColumn">
+                <div class="col-md-3 col-2 prodCountColumn">
 
                   <button #decre (click)="increDecre(decre)" [id]="prod.product.id" name="-">-</button>
                   <input type="text" name="prodCount" [value]="prod.count" readonly>
@@ -82,7 +82,7 @@
     </div>
 
     <!-- price recipt view -->
-    <div class="col-5 priceDetailsTableColumn">
+    <div class="col-lg-5 priceDetailsTableColumn">
 
       <table class="table priceDetailsTable">
         <thead>

@@ -2,7 +2,7 @@
 
 
 <div class="row">
-    <div class="col-md-3 col-sm-6 column" *ngFor="let prod of productsArr">
+    <div class="col-md-3 col-sm-6 col-12 column" *ngFor="let prod of productsArr">
         <div class="card">
             <a [routerLink]="['/user-product-detail', prod.id]" [id]="prod.id"><img src="assets/images/mobile.jpg"
                     alt="Denim Jeans" style="width:100%"></a>
