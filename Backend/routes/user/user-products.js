@@ -17,11 +17,11 @@ router.use('/', (req,res,next) => {
     next()
 })
 
-// /admin/orders
-// all orders received...
+// /user/products
+// show all the products...
 router.get('/',(req,res)=>{
 
-    let query = `select * from orders`;
+    let query = `select * from products`;
 
     connection.query(query, (err, result) => {
         if(err){
@@ -44,11 +44,11 @@ router.get('/',(req,res)=>{
     })
 })
 
-// /admin/orders
-// update order status by id...
-router.put('/update-status/:id/:status',(req,res)=>{
+// /user/products
+// get product by id...
+router.get('/:id',(req,res)=>{
 
-    let query = `UPDATE orders SET orderstatus = '${req.params.status}' WHERE id = '${req.params.id}'`;
+    let query = `select * from products where id = ${req.params.id}`;
 
     connection.query(query, (err, result) => {
         if(err){

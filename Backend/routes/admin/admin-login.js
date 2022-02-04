@@ -19,9 +19,28 @@ router.use('/', (req,res,next) => {
 
 // /admin/login
 // login authentication...
-router.get('/',(req,res)=>{
-    res.send({
-        message: "Admin Login route"
+router.get('/:email/:pass',(req,res)=>{
+
+    let query = `select email from admin where email = '${req.params.email}' and password = '${req.params.pass}'`;
+
+    connection.query(query, (err, result) => {
+        if(err){
+            console.log(err.message)
+            var errRes = {
+                code: err.code,
+                message: err.message 
+            }
+
+            res.send(errRes)
+        }else{
+
+            var successRes = {
+                code: 'success',
+                message: result
+            }
+
+            res.send(successRes)
+        }
     })
 })
 
