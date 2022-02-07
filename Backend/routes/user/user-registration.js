@@ -19,10 +19,17 @@ router.use('/', (req,res,next) => {
 
 // /user/registration
 // user registration...
-router.post('/:name/:email/:pass/:address',(req,res)=>{
+router.post('/',(req,res)=>{
+
+    // res.send({apiSideData: req.body})
+
+    let name = req.body.name
+    let email = req.body.email
+    let pass = req.body.password
+    let address = req.body.address
 
     // name email password address
-    let query = `insert into users (name, email, password, address) values ('${req.params.name}','${req.params.email}','${req.params.pass}', '${req.params.address}')`;
+    let query = `insert into users (name, email, password, address) values ('${name}','${email}','${pass}', '${address}')`;
 
     connection.query(query, (err, result) => {
         if(err){
@@ -40,7 +47,8 @@ router.post('/:name/:email/:pass/:address',(req,res)=>{
                 message: result
             }
 
-            res.send(successRes)
+            res.json(successRes)
+            // res.send(result.json)
         }
     })
 })

@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AdminOrderBookModel } from './DataModel/AdminOrderBookModel/admin-order-book-model';
 import { Cart } from './DataModel/CartModel/cart';
 import { OrderedProduct } from './DataModel/OrderedProducts/ordered-product';
@@ -20,121 +22,170 @@ export class EcommerceService {
 
   private usersArr: User[] = [this.tempUser]
 
-  constructor() {
+  apiURL = 'http://localhost:3000'
+
+  constructor(private http: HttpClient) {
     console.log(this.productsArr);
-    console.log(this.usersArr);
+    // console.log(this.usersArr);
   }
 
   //admin functions..
 
-  adminLogin(email: string, pass: string): boolean {
+  adminLogin(data: any): Observable<any> {
 
-    if (email === "laha@gmail.com") {
-      if (pass === "1234") {
-        localStorage.setItem("adminEmail", email)
-        return true
-      } else {
-        alert("Incorrect password!")
-        return false
-      }
-    } else {
-      alert("User not found!")
-      return false
-    }
+    console.log({FormData: data});
+
+    return this.http.post(`${this.apiURL}/admin/login`,data)
+
+    // if (email === "laha@gmail.com") {
+    //   if (pass === "1234") {
+    //     localStorage.setItem("adminEmail", email)
+    //     return true
+    //   } else {
+    //     alert("Incorrect password!")
+    //     return false
+    //   }
+    // } else {
+    //   alert("User not found!")
+    //   return false
+    // }
   }
 
   adminLogout() {
+    localStorage.removeItem("adminId")
     localStorage.removeItem("adminEmail")
+    localStorage.removeItem("adminRole")
   }
 
-  adminAddProducts(id: string, name: string, price: number, description: string) {
-    var tempProd = new Products(id, name, price, description);
-    this.productsArr.push(tempProd);
-    console.log(this.productsArr);
+  adminShowProfile(): Observable<any>{
+
+    return this.http.get(`${this.apiURL}/admin/profile`)
+
   }
 
-  getProducts(): Products[] {
-    return this.productsArr
+  adminAddProducts(data: any): Observable<any>{
+    // var tempProd = new Products(id, name, price, description);
+    // this.productsArr.push(tempProd);
+    // console.log(this.productsArr);
+    console.log({FormData: data});
+
+    return this.http.post(`${this.apiURL}/admin/products/add`,data)
+    
   }
 
-  adminDeleteProduct(id: string) {
-    var index = this.productsArr.findIndex(p => p.id === id)
-    this.productsArr.splice(index, 1);
-    console.log(index);
+  getAdminProducts(): Observable<any> {
+    return this.http.get(`${this.apiURL}/admin/products`)
   }
 
-  adminEditProductReq(id: string): Products {
-    var index = this.productsArr.findIndex(p => p.id === id)
-    return this.productsArr[index]
+  adminDeleteProduct(data: any): Observable<any>{
+    // var index = this.productsArr.findIndex(p => p.id === id)
+    // this.productsArr.splice(index, 1);
+    // console.log(index);
+
+    console.log({FormData: data});
+
+    return this.http.delete(`${this.apiURL}/admin/products/delete/${data}`)
+  }
+
+  adminEditProductReq(data: any): Observable<any> {
+    // var index = this.productsArr.findIndex(p => p.id === id)
+    // return this.productsArr[index]
+    // console.log(index);
+
+    console.log({FormData: data});
+
+    return this.http.get(`${this.apiURL}/admin/products/id/${data}`)
+
+  }
+
+  adminUpdateProduct(data: any): Observable<any>{
+    // var index = this.productsArr.findIndex(p => p.id === id)
+
+    // this.productsArr[index].name = name
+    // this.productsArr[index].price = price
+    // this.productsArr[index].description = desc
+
+    console.log({FormData: data});
+
+    return this.http.put(`${this.apiURL}/admin/products/edit`,data)
+
     // console.log(index);
   }
 
-  adminUpdateProduct(id: string, name: string, price: number, desc: string) {
-    var index = this.productsArr.findIndex(p => p.id === id)
-
-    this.productsArr[index].name = name
-    this.productsArr[index].price = price
-    this.productsArr[index].description = desc
-
-    // console.log(index);
+  getAdminOrderBook(): Observable<any> {
+    // return this.adminOrderArr
+    return this.http.get(`${this.apiURL}/admin/orders`)
   }
 
-  getAdminOrderBook(): AdminOrderBookModel[] {
-    return this.adminOrderArr
-  }
+  adminUpdateOrderStatus(orderId:any, status: any): Observable<any> {
 
-  adminUpdateOrderStatus(buyeremail: string, status: string, prodId: string) {
+    let data = {orderId: orderId, status: status}
+
+    return this.http.put(`${this.apiURL}/admin/orders/update-status`,data)
 
     //making chang in the user order history arr..
-    let index = this.usersArr.findIndex(u => u.email === buyeremail)
+    // let index = this.usersArr.findIndex(u => u.email === buyeremail)
 
-    let prodIndex = this.usersArr[index].orderedHistory.findIndex(p => p.id === prodId)
+    // let prodIndex = this.usersArr[index].orderedHistory.findIndex(p => p.id === prodId)
 
-    if (status === "Shipped") {
-      this.usersArr[index].orderedHistory[prodIndex].orderStatus = OrderStatus.Shipped
-    } else {
-      this.usersArr[index].orderedHistory[prodIndex].orderStatus = OrderStatus.Pending
-    }
+    // if (status === "Shipped") {
+    //   this.usersArr[index].orderedHistory[prodIndex].orderStatus = OrderStatus.Shipped
+    // } else {
+    //   this.usersArr[index].orderedHistory[prodIndex].orderStatus = OrderStatus.Pending
+    // }
 
-    //making change in the adminOrder arr....
-    let adminProdIndex = this.adminOrderArr.findIndex(p => p.id === prodId)
+    // //making change in the adminOrder arr....
+    // let adminProdIndex = this.adminOrderArr.findIndex(p => p.id === prodId)
 
-    if (status === "Shipped") {
-      this.adminOrderArr[adminProdIndex].orderStatus = OrderStatus.Shipped
-    } else {
-      this.adminOrderArr[adminProdIndex].orderStatus = OrderStatus.Pending
-    }
+    // if (status === "Shipped") {
+    //   this.adminOrderArr[adminProdIndex].orderStatus = OrderStatus.Shipped
+    // } else {
+    //   this.adminOrderArr[adminProdIndex].orderStatus = OrderStatus.Pending
+    // }
   }
 
 
   // user functions...
 
-  createNewUser(email: string, name: string, password: string) {
-    let newUser = new User(email, name, password);
+  createNewUser(data: any): Observable<any>{
+    // let newUser = new User(email, name, password);
 
-    this.usersArr.push(newUser);
+    // this.usersArr.push(newUser);
 
-    console.log(this.usersArr);
+    console.log({FormData: data});
+
+
+    return this.http.post(`${this.apiURL}/user/registration`,data)
+
+
   }
 
-  loginVerify(email: string, pass: string): boolean {
+  loginVerify(data: any): Observable<any> {
 
-    var index = this.usersArr.findIndex(u => u.email === email)
-    console.log(index);
-    if (index !== -1) {
-      if (this.usersArr[index].email === email && this.usersArr[index].password === pass) {
-        localStorage.setItem("email", email);
-        return true;
-      } else {
-        alert("Wrong Password");
-        console.log("Wrong Password");
-        return false;
-      }
-    } else {
-      alert("User not registured");
-      console.log("User not registured");
-      return false;
-    }
+    console.log({FormData: data});
+
+    return this.http.post(`${this.apiURL}/user/login`,data)
+
+    // var index = this.usersArr.findIndex(u => u.email === email)
+    // console.log(index);
+    // if (index !== -1) {
+    //   if (this.usersArr[index].email === email && this.usersArr[index].password === pass) {
+        // localStorage.setItem("email", email);
+    //     return true;
+    //   } else {
+    //     alert("Wrong Password");
+    //     console.log("Wrong Password");
+    //     return false;
+    //   }
+    // } else {
+    //   alert("User not registured");
+    //   console.log("User not registured");
+    //   return false;
+    // }
+  }
+
+  getUserProducts(): Observable<any> {
+    return this.http.get(`${this.apiURL}/user/products`)
   }
 
   getUser(): User {
@@ -147,138 +198,140 @@ export class EcommerceService {
 
   }
 
-  addToWishlist(prodId: string) {
+  userShowProfile(userId: any): Observable<any>{
 
-    let index = this.productsArr.findIndex(p => p.id === prodId)
-
-    let tempProd: Products = this.productsArr[index]
-
-    let localEmail = localStorage.getItem("email");
-
-    let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
-
-    //checking whether this product already exists in the cart or not..
-    let duplicateProdIndex = this.usersArr[userIndex].wishlist.findIndex(p => p.id === prodId)
-
-    if (duplicateProdIndex === -1) {
-      this.usersArr[userIndex].wishlist.push(tempProd);
-    } else {
-
-    }
-  }
-
-  removeFromWishlist(prodId: string) {
-
-    let localEmail = localStorage.getItem("email");
-
-    let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
-
-    //checking whether this product already exists in the cart or not..
-    let prodIndex = this.usersArr[userIndex].wishlist.findIndex(p => p.id === prodId)
-
-    if (prodIndex !== -1) {
-      this.usersArr[userIndex].wishlist.splice(prodIndex, 1);
-    } else {
-
-    }
-  }
-
-  getWishlistArr(): Products[] {
-    let localEmail = localStorage.getItem("email");
-
-    let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
-
-    return this.usersArr[userIndex].wishlist
-  }
-
-  addProdToCart(prodId: string) {
-
-    let index = this.productsArr.findIndex(p => p.id === prodId)
-
-    let tempProd: Products = this.productsArr[index]
-
-    let tempCartProduct: Cart = new Cart(tempProd)
-
-    let localEmail = localStorage.getItem("email");
-
-    let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
-
-    //checking whether this product already exists in the cart or not..
-    let duplicateProdIndex = this.usersArr[userIndex].cart.findIndex(p => p.product.id === prodId)
-
-    if (duplicateProdIndex !== -1) {
-      if (this.usersArr[userIndex].cart[duplicateProdIndex].count === 0) {
-        this.removeFromCart(prodId)
-      } else {
-        this.usersArr[userIndex].cart[duplicateProdIndex].count += 1
-      }
-    } else {
-      this.usersArr[userIndex].cart.push(tempCartProduct);
-    }
+    return this.http.get(`${this.apiURL}/user/profile/${userId}`)
 
   }
 
-  incrementOrDecrement(prodId: string, sign: string) {
+  addToWishlist(data: any): Observable<any> {
+
+    return this.http.post(`${this.apiURL}/user/wishlist/add`,data)
+
+
+    // let index = this.productsArr.findIndex(p => p.id === prodId)
+
+    // let tempProd: Products = this.productsArr[index]
+
+    // let localEmail = localStorage.getItem("email");
+
+    // let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
+
+    // //checking whether this product already exists in the cart or not..
+    // let duplicateProdIndex = this.usersArr[userIndex].wishlist.findIndex(p => p.id === prodId)
+
+    // if (duplicateProdIndex === -1) {
+    //   this.usersArr[userIndex].wishlist.push(tempProd);
+    // } else {
+
+    // }
+  }
+
+  removeFromWishlist(userId: any, prodId: any) {
+
+    // /user/wishlist/remove
+
+    return this.http.delete(`${this.apiURL}/user/wishlist/remove/${userId}/${prodId}`)
+
+    // let localEmail = localStorage.getItem("email");
+
+    // let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
+
+    // //checking whether this product already exists in the cart or not..
+    // let prodIndex = this.usersArr[userIndex].wishlist.findIndex(p => p.id === prodId)
+
+    // if (prodIndex !== -1) {
+    //   this.usersArr[userIndex].wishlist.splice(prodIndex, 1);
+    // } else {
+
+    // }
+  }
+
+  getWishlistArr(userId: any): Observable<any> {
+
+    return this.http.get(`${this.apiURL}/user/wishlist/${userId}`)
+
+
+    // let localEmail = localStorage.getItem("email");
+
+    // let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
+
+    // return this.usersArr[userIndex].wishlist
+  }
+
+
+  getCartProducts(data: any): Observable<any>{
+
+    console.log({FormData: data});
+
+    return this.http.get(`${this.apiURL}/user/cart/${data}`)
+  }
+
+  addProdToCart(data: any): Observable<any>{
+
+    console.log({FormData: data});
+
+    return this.http.post(`${this.apiURL}/user/cart/add`,data)
+
+    // let index = this.productsArr.findIndex(p => p.id === prodId)
+
+    // let tempProd: Products = this.productsArr[index]
+
+    // let tempCartProduct: Cart = new Cart(tempProd)
+
+    // let localEmail = localStorage.getItem("email");
+
+    // let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
+
+    // //checking whether this product already exists in the cart or not..
+    // let duplicateProdIndex = this.usersArr[userIndex].cart.findIndex(p => p.product.id === prodId)
+
+    // if (duplicateProdIndex !== -1) {
+    //   if (this.usersArr[userIndex].cart[duplicateProdIndex].count === 0) {
+    //     this.removeFromCart(prodId)
+    //   } else {
+    //     this.usersArr[userIndex].cart[duplicateProdIndex].count += 1
+    //   }
+    // } else {
+    //   this.usersArr[userIndex].cart.push(tempCartProduct);
+    // }
+
+  }
+
+  incrementOrDecrement(data: any, sign: string): Observable<any> {
 
     if (sign === '+') {
-      // this.addProdToCart(prodId)
 
-      let index = this.productsArr.findIndex(p => p.id === prodId)
+      console.log({formData : data})
 
-      let tempProd: Products = this.productsArr[index]
+      return this.http.put(`${this.apiURL}/user/cart/prod-quantity-incre`,data)
 
-      let tempCartProduct: Cart = new Cart(tempProd)
-
-      let localEmail = localStorage.getItem("email");
-
-      let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
-
-      //checking whether this product already exists in the cart or not..
-      let duplicateProdIndex = this.usersArr[userIndex].cart.findIndex(p => p.product.id === prodId)
-
-      if (duplicateProdIndex !== -1) {
-        this.usersArr[userIndex].cart[duplicateProdIndex].count += 1
-      }
 
     } else {
 
-      let index = this.productsArr.findIndex(p => p.id === prodId)
+      return this.http.put(`${this.apiURL}/user/cart/prod-quantity-decre`,data)
 
-      let tempProd: Products = this.productsArr[index]
-
-      let tempCartProduct: Cart = new Cart(tempProd)
-
-      let localEmail = localStorage.getItem("email");
-
-      let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
-
-      //checking whether this product already exists in the cart or not..
-      let duplicateProdIndex = this.usersArr[userIndex].cart.findIndex(p => p.product.id === prodId)
-
-      if (duplicateProdIndex !== -1) {
-        if (this.usersArr[userIndex].cart[duplicateProdIndex].count === 1) {
-          this.removeFromCart(prodId)
-        } else {
-          this.usersArr[userIndex].cart[duplicateProdIndex].count -= 1
-        }
-      }
 
     }
 
   }
 
-  removeFromCart(prodId: string) {
-    let localEmail = localStorage.getItem("email");
+  removeFromCart(userid: any, prodId: any) {
 
-    let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
+    return this.http.delete(`${this.apiURL}/user/cart/remove/${userid}/${prodId}`)
 
-    let prodIndexInCartArr = this.usersArr[userIndex].cart.findIndex(p => p.product.id === prodId)
+    // let userid = localStorage.getItem("id");
 
-    console.log(this.usersArr[userIndex].cart)
+    // let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
 
-    this.usersArr[userIndex].cart.splice(prodIndexInCartArr, 1)
+    // let prodIndexInCartArr = this.usersArr[userIndex].cart.findIndex(p => p.product.id === prodId)
 
-    console.log(this.usersArr[userIndex].cart)
+    // console.log(this.usersArr[userIndex].cart)
+
+    // this.usersArr[userIndex].cart.splice(prodIndexInCartArr, 1)
+
+    // console.log(this.usersArr[userIndex].cart)
+
   }
 
   totalCartPrice(): { subTotal: number, allTotal: number, deliveryChrg: number } {
@@ -308,56 +361,40 @@ export class EcommerceService {
 
   }
 
-  getProduct(id: string): Products {
+  getProduct(prodId: any): Observable<any> {
 
-    let index = this.productsArr.findIndex(p => p.id === id)
+    return this.http.get(`${this.apiURL}/user/products/${prodId}`)
 
-    return this.productsArr[index]
+    // let index = this.productsArr.findIndex(p => p.id === id)
+
+    // return this.productsArr[index]
 
   }
 
-  productBuy() {
-    //add products to order history of user and remove from cart...
-    let localEmail = localStorage.getItem("email");
+  productBuy(data:any): Observable<any> {
 
-    let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
-
-    for (let prod of this.usersArr[userIndex].cart) {
-      let tempProdId = prod.product.id
-      let tempProdName = prod.product.name
-      let tempProdPrice = prod.product.price
-      let tempProdDesc = prod.product.description
-      let tempProdQuantity = prod.count
-      let tempOrderProduct = new OrderedProduct(tempProdId, tempProdName, tempProdPrice, tempProdDesc, tempProdQuantity)
-
-      this.usersArr[userIndex].orderedHistory.push(tempOrderProduct)
-
-      //add products to orders of admin...
-
-      let name = this.usersArr[userIndex].name
-      let email = this.usersArr[userIndex].email
-      let add = this.usersArr[userIndex].address
-
-      let tempAdminOrderBookProd = new AdminOrderBookModel(tempProdId, tempProdName, tempProdPrice, tempProdDesc, tempProdQuantity, name, email, add)
-
-      this.adminOrderArr.push(tempAdminOrderBookProd)
-    }
-
-    this.usersArr[userIndex].cart = []
+    return this.http.post(`${this.apiURL}/user/order-history/add`,data)
 
 
   }
 
-  getUserOrderHistory(): OrderedProduct[] {
-    let localEmail = localStorage.getItem("email");
+  getUserOrderHistory(userId: any): Observable<any> {
 
-    let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
+    return this.http.get(`${this.apiURL}/user/order-history/${userId}`)
 
-    return this.usersArr[userIndex].orderedHistory
+    // let localEmail = localStorage.getItem("email");
+
+    // let userIndex = this.usersArr.findIndex(u => u.email === localEmail)
+
+    // return this.usersArr[userIndex].orderedHistory
+
+
   }
 
   userLogout() {
+    localStorage.removeItem("id");
     localStorage.removeItem("email");
+    localStorage.removeItem("role");
   }
 
 
@@ -365,11 +402,20 @@ export class EcommerceService {
   // for route guards...
 
   checkIfAdminLoggedIn() {
-    return !!localStorage.getItem("adminEmail")
+    if(localStorage.getItem("adminRole") == 'admin'){
+      return !!(localStorage.getItem("adminEmail") && localStorage.getItem("adminId"))
+    }else{
+      return false
+    }
   }
 
   checkIfUserLoggedIn() {
-    return !!localStorage.getItem("email")
+    if(localStorage.getItem("role") == 'user'){
+      return !!(localStorage.getItem("email") && localStorage.getItem("id"))
+    }else{
+      return false
+    }
+    
   }
 
 }

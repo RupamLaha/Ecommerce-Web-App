@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Products } from 'src/app/DataModel/products';
 import { EcommerceService } from 'src/app/ecommerce.service';
 
@@ -22,16 +23,44 @@ export class UserHomeComponent implements OnInit {
 
   productsArr: Products[] = []
 
-  constructor(private ecomService: EcommerceService) { }
+  constructor(private ecomService: EcommerceService, private router: Router) { }
 
   ngOnInit(): void {
-    this.productsArr = this.ecomService.getProducts();
+    // this.productsArr = this.ecomService.getProducts();
+    // this.ecomService.getUserProducts().subscribe((response)=>{
+    //   console.log(response)
+    // })
+
+    this.productsArr = []
+
+    this.ecomService.getUserProducts().subscribe((response)=>{
+      console.log(response)
+      if(response.message.length > 0){
+        for(let prod of response.message){
+          let id = prod.id
+          let name = prod.name
+          let desc = prod.description
+          let price = prod.price
+
+          let products = new Products(id,name,price,desc)
+
+          this.productsArr.push(products)
+
+        }
+      }else if(response.message.length == 0){
+        // this.showEmptyIcon = true
+      }
+    })
   }
 
   onClick(addToCart: HTMLButtonElement) {
 
     let prodId = addToCart.id
-    this.ecomService.addProdToCart(prodId);
+    let userId = localStorage.getItem("id")
+    this.ecomService.addProdToCart({userId: userId ,prodId: prodId}).subscribe((response)=>{
+      console.log(response)
+      this.router.navigate(['/user-cart'])
+    })
 
   }
 

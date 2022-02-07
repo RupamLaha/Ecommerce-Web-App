@@ -19,9 +19,9 @@ router.use('/', (req,res,next) => {
 
 // /user/profile
 // user profile...
-router.get('/:email',(req,res)=>{
+router.get('/:id',(req,res)=>{
 
-    let query = `select id, name, email, address from users where email = ${req.params.email}`;
+    let query = `select id, name, email, address from users where id = '${req.params.id}'`;
 
     connection.query(query, (err, result) => {
         if(err){
@@ -31,7 +31,7 @@ router.get('/:email',(req,res)=>{
                 message: err.message 
             }
 
-            res.send(errRes)
+            res.json(errRes)
         }else{
 
             var successRes = {
@@ -39,7 +39,7 @@ router.get('/:email',(req,res)=>{
                 message: result
             }
 
-            res.send(successRes)
+            res.json(successRes)
         }
     })
 })

@@ -46,9 +46,14 @@ router.get('/:id',(req,res)=>{
 
 // /user/wishlist/add
 // add particular product into wishlist of the user by prodid...
-router.post('/add/:userid/:prodid',(req,res)=>{
+router.post('/add/',(req,res)=>{
 
-    let query = `insert into wishlist (prodid, userid) values ('${req.params.prodid}','${req.params.userid}')`;
+    // :userid/:prodid
+
+    let userId = req.body.userId
+    let prodId = req.body.prodId
+
+    let query = `insert into wishlist (prodid, userid) values ('${prodId}','${userId}')`;
 
     connection.query(query, (err, result) => {
         if(err){
@@ -75,9 +80,9 @@ router.post('/add/:userid/:prodid',(req,res)=>{
 
 // /user/wishlist/remove
 // remove particular product from wishlist of the user by wishlistid...
-router.delete('/remove/:wishlistid',(req,res)=>{
+router.delete('/remove/:userid/:prodid',(req,res)=>{
 
-    let query = `delete from wishlist where id = ${req.params.wishlistid}`;
+    let query = `delete from wishlist where userid = '${req.params.userid}' and prodid = '${req.params.prodid}'`;
 
     connection.query(query, (err, result) => {
         if(err){

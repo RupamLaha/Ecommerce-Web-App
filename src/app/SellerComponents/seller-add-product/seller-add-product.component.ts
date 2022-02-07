@@ -14,6 +14,8 @@ export class SellerAddProductComponent implements OnInit {
   adminProductsArr: Products[] = []
 
   displayStyle = "none";
+  msgAfterSubmit: any;
+  alertType : any;
 
   constructor(private fb: FormBuilder, private ecomService: EcommerceService, private router: Router) { }
 
@@ -21,7 +23,7 @@ export class SellerAddProductComponent implements OnInit {
   nameRegx = /^[a-zA-Z ]*$/
 
   newProductAddingForm = this.fb.group({
-    id: ["", [Validators.required, Validators.pattern(this.prodIdRegx)]],
+    // id: ["", [Validators.required, Validators.pattern(this.prodIdRegx)]],
     name: ["", [Validators.required, Validators.pattern(this.nameRegx)]],
     price: ["", [Validators.required, Validators.pattern(this.prodIdRegx)]],
     description: ["", [Validators.required, Validators.pattern(this.nameRegx)]]
@@ -29,26 +31,52 @@ export class SellerAddProductComponent implements OnInit {
 
   onSubmit() {
     if (this.newProductAddingForm.valid) {
-      console.log(this.newProductAddingForm.value);
-      var tempProd: Products = this.newProductAddingForm.value;
-      this.ecomService.adminAddProducts(tempProd.id, tempProd.name, tempProd.price, tempProd.description);
+      // console.log(this.newProductAddingForm.value);
+      // var tempProd: Products = this.newProductAddingForm.value;
+      // this.ecomService.adminAddProducts(tempProd.id, tempProd.name, tempProd.price, tempProd.description);
 
-      this.newProductAddingForm.setValue({
-        id: "",
-        name: "",
-        price: null,
-        description: ""
+      // this.newProductAddingForm.setValue({
+      //   id: "",
+      //   name: "",
+      //   price: null,
+      //   description: ""
+      // })
+
+      // this.newProductAddingForm.markAsUntouched()
+
+      // this.router.navigate(['/seller-add-product']);
+
+      this.ecomService.adminAddProducts(this.newProductAddingForm.value).subscribe((response)=>{
+        console.log(response)
+        if(response.code == "success"){
+          if(response.message.affectedRows == 1){
+            this.newProductAddingForm.reset()
+            this.newProductAddingForm.markAsUntouched()
+            this.msgAfterSubmit = 'Product successfully added.'
+            this.displayStyle = "block";
+            this.alertType = 'success'
+          }else if(response.message.affectedRows == 0){
+            this.msgAfterSubmit = 'Oops something went wrong. Try again'
+            this.displayStyle = "block";
+            this.alertType = 'warning'
+          }else{
+            this.msgAfterSubmit = 'Oops something went wrong. Try again'
+            this.displayStyle = "block";
+            this.alertType = 'warning'
+          }
+        }else{
+          this.msgAfterSubmit = response.message
+            this.displayStyle = "block";
+            this.alertType = 'warning'
+        }
+        
       })
-
-      this.newProductAddingForm.markAsUntouched()
-
-      this.router.navigate(['/seller-add-product']);
 
     } else {
       alert("Invalid product")
     }
 
-    this.displayStyle = "block";
+    // this.displayStyle = "block";
   }
 
   ngOnInit(): void {

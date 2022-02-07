@@ -42,13 +42,19 @@ router.get('/',(req,res)=>{
             res.send(successRes)
         }
     })
+
+    // res.end()
 })
 
 // /admin/products
 // get product by id...
-router.get('/:id',(req,res)=>{
+router.get('/id/:id',(req,res)=>{
 
-    let query = `select * from products where id = ${req.params.id}`;
+    console.log("api side")
+    // console.log("api side req.body = " + req.body)
+    // console.log("api side req.body.id = " + req.body.id)
+
+    let query = `select * from products where id = '${req.params.id}'`;
 
     connection.query(query, (err, result) => {
         if(err){
@@ -73,9 +79,16 @@ router.get('/:id',(req,res)=>{
 
 // /admin/products/add
 // add new product...
-router.post('/add/:id/:name/:desc/:price',(req,res)=>{
+router.post('/add/',(req,res)=>{
 
-    let query = `INSERT INTO products (id, name, description, price) VALUES ('${req.params.id}', '${req.params.name}', '${req.params.desc}', '${req.params.price}')`;
+    // :id/:name/:desc/:price
+
+    // let id = req.body.id
+    let name = req.body.name
+    let price = req.body.price
+    let desc = req.body.description
+
+    let query = `INSERT INTO products (name, description, price) VALUES ('${name}', '${desc}', '${price}')`;
 
     connection.query(query, (err, result) => {
         if(err){
@@ -100,9 +113,40 @@ router.post('/add/:id/:name/:desc/:price',(req,res)=>{
 
 // /admin/products/edit
 // edit product...
-router.put('/edit/:id/:name/:desc/:price',(req,res)=>{
+router.put('/edit/',(req,res)=>{
 
-    let query = `UPDATE products SET name = '${req.params.name}', description = '${req.params.desc}', price = '${req.params.price}' WHERE id = '${req.params.id}'`;
+    console.log("api Side = "+req.body.id)
+
+    let query = `UPDATE products SET name = '${req.body.name}', description = '${req.body.description}', price = '${req.body.price}' WHERE id = '${req.body.id}'`;
+
+    connection.query(query, (err, result) => {
+        if(err){
+            console.log(err.message)
+            var errRes = {
+                code: err.code,
+                message: err.message 
+            }
+
+            res.send(errRes)
+        }else{
+
+            var successRes = {
+                code: 'success',
+                message: result
+            }
+
+            res.send(successRes)
+        }
+    })
+})
+
+// /admin/products/delete
+// delete product...
+router.delete('/delete/:id',(req,res)=>{
+
+    console.log("api Side = "+req.params.id)
+
+    let query = `delete from products where id = '${req.params.id}';`;
 
     connection.query(query, (err, result) => {
         if(err){

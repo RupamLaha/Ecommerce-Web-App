@@ -12,18 +12,37 @@ export class SellerProductsComponent implements OnInit {
 
   adminProductsArr: Products[] = []
 
-  showEmptyIcon: boolean = true
+  showEmptyIcon: any;
 
   constructor(private ecomService: EcommerceService, private router: Router) { }
 
   ngOnInit(): void {
-    this.adminProductsArr = this.ecomService.getProducts();
+    // this.adminProductsArr = this.ecomService.getProducts();
 
-    if (this.adminProductsArr.length === 0) {
-      this.showEmptyIcon = true
-    } else {
-      this.showEmptyIcon = false
-    }
+    this.adminProductsArr = []
+
+    this.ecomService.getAdminProducts().subscribe((response)=>{
+      console.log(response)
+      if(response.message.length > 0){
+        for(let prod of response.message){
+          let id = prod.id
+          let name = prod.name
+          let desc = prod.description
+          let price = prod.price
+
+          let products = new Products(id,name,price,desc)
+
+          this.adminProductsArr.push(products)
+
+          this.showEmptyIcon = false
+        }
+      }else if(response.message.length == 0){
+        this.showEmptyIcon = true
+      }
+    })
+
+    console.log(this.adminProductsArr.length)
+
   }
 
   editProduct(editBtn: HTMLButtonElement) {
@@ -33,8 +52,10 @@ export class SellerProductsComponent implements OnInit {
 
   removeProduct(removeBtn: HTMLButtonElement) {
     console.log(removeBtn.id);
-    this.ecomService.adminDeleteProduct(removeBtn.id);
-    this.ngOnInit()
+    this.ecomService.adminDeleteProduct(removeBtn.id).subscribe((response)=>{
+      console.log(response)
+      this.ngOnInit()
+    })
   }
 
 }

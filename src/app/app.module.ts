@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http'
 
 import { EcommerceService } from './ecommerce.service';
 
@@ -52,7 +53,8 @@ import { AdminRouteGuard } from './RouteGuard/admin-route.guard';
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [EcommerceService, RouteGuardGuard, AdminRouteGuard],
   bootstrap: [AppComponent]

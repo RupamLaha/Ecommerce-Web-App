@@ -19,9 +19,12 @@ router.use('/', (req,res,next) => {
 
 // /admin/login
 // login authentication...
-router.get('/:email/:pass',(req,res)=>{
+router.post('/',(req,res)=>{
 
-    let query = `select email from admin where email = '${req.params.email}' and password = '${req.params.pass}'`;
+    let email = req.body.email
+    let pass = req.body.password
+
+    let query = `select id, email, role from admin where email = '${email}' and password = '${pass}'`;
 
     connection.query(query, (err, result) => {
         if(err){

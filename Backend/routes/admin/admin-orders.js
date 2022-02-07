@@ -21,7 +21,7 @@ router.use('/', (req,res,next) => {
 // all orders received...
 router.get('/',(req,res)=>{
 
-    let query = `select * from orders`;
+    let query = `select *, orders.id orderId, users.name uname, products.name pname from orders join users on orders.userid = users.id join products on orders.prodid = products.id`;
 
     connection.query(query, (err, result) => {
         if(err){
@@ -45,10 +45,15 @@ router.get('/',(req,res)=>{
 })
 
 // /admin/orders
-// update order status by id...
-router.put('/update-status/:id/:status',(req,res)=>{
+// update order status by orderid...
+router.put('/update-status/',(req,res)=>{
 
-    let query = `UPDATE orders SET orderstatus = '${req.params.status}' WHERE id = '${req.params.id}'`;
+    // :orderid/:status
+
+    let orderId = req.body.orderId
+    let status = req.body.status
+
+    let query = `UPDATE orders SET orderstatus = '${status}' WHERE id = '${orderId}'`;
 
     connection.query(query, (err, result) => {
         if(err){

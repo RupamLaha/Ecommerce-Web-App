@@ -19,9 +19,9 @@ router.use('/', (req,res,next) => {
 
 // /admin/profile
 // admin profile...
-router.get('/:email',(req,res)=>{
+router.get('/',(req,res)=>{
 
-    let query = `select shopname, address, email, phone from admin where email = '${req.params.email}'`;
+    let query = `select shopname, address, email, phone from admin where email = 'wowshop@gmail.com'`;
 
     connection.query(query, (err, result) => {
         if(err){

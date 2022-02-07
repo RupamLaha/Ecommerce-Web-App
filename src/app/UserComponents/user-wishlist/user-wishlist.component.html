@@ -30,7 +30,7 @@
                         <a [routerLink]="['/user-product-detail',prod.id]">
                             <p class="price">Rs.{{prod.price}}</p>
                         </a>
-                        <p><button routerLink="/user-cart" #addToCart (click)="addToCartClicked(addToCart)"
+                        <p><button #addToCart (click)="addToCartClicked(addToCart)"
                                 [id]="prod.id">Add to Cart</button></p>
                         <p><button #remove (click)="removeFormWishClicked(remove)" [id]="prod.id">Remove from
                                 wishlist</button></p>

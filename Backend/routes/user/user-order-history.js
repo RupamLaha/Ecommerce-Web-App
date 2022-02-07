@@ -48,9 +48,15 @@ router.get('/:id',(req,res)=>{
 // /user/order-history/add
 // add to orders ...
 // (buy order)...
-router.post('/add/:userid/:prodid/:quantity',(req,res)=>{
+router.post('/add/',(req,res)=>{
 
-    let query = `insert into orders (userid, prodid, orderstatus, quantity) values ('${req.params.userid}','${req.params.prodid}', '0', '${req.params.quantity}')`;
+    // :userid/:prodid/:quantity
+
+    let userId = req.body.userId
+    let prodId = req.body.prodId
+    let quantity = req.body.quantity
+
+    let query = `insert into orders (userid, prodid, quantity) values ('${userId}','${prodId}', '${quantity}')`;
 
     connection.query(query, (err, result) => {
         if(err){
