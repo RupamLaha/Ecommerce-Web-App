@@ -12,27 +12,27 @@ router.use(bodyParser.urlencoded({ extended: false }))
 router.use(bodyParser.json())
 
 //middleware
-router.use('/', (req,res,next) => {
+router.use('/', (req, res, next) => {
     console.log('Middleware wall')
     next()
 })
 
 // /user/cart
 // get all cart products of particular user by userid...
-router.get('/:id',(req,res)=>{
+router.get('/:id', (req, res) => {
 
     let query = `select * from cart join products on cart.prodid = products.id where cart.userid = ${req.params.id}`;
 
     connection.query(query, (err, result) => {
-        if(err){
+        if (err) {
             console.log(err.message)
             var errRes = {
                 code: err.code,
-                message: err.message 
+                message: err.message
             }
 
             res.send(errRes)
-        }else{
+        } else {
 
             var successRes = {
                 code: 'success',
@@ -46,7 +46,7 @@ router.get('/:id',(req,res)=>{
 
 // /user/cart/add
 // insert particular product into user cart by prodid...
-router.post('/add',(req,res)=>{
+router.post('/add', (req, res) => {
 
     // /:userid/:prodid
 
@@ -56,15 +56,15 @@ router.post('/add',(req,res)=>{
     let query = `insert into cart (userid, prodid, quantity) values ('${userId}','${prodId}', '1')`;
 
     connection.query(query, (err, result) => {
-        if(err){
+        if (err) {
             console.log(err.message)
             var errRes = {
                 code: err.code,
-                message: err.message 
+                message: err.message
             }
 
             res.send(errRes)
-        }else{
+        } else {
 
             var successRes = {
                 code: 'success',
@@ -76,22 +76,50 @@ router.post('/add',(req,res)=>{
     })
 })
 
+// /user/cart/check/
+// check if a particular product is present in user cart or not...
+router.get('/check/:userid/:prodid', (req, res) => {
+
+    let query = `select * from cart where userid = '${req.params.userid}' and prodid = '${req.params.prodid}'`;
+
+    connection.query(query, (err, result) => {
+        if (err) {
+            console.log(err.message)
+            var errRes = {
+                code: err.code,
+                message: err.message
+            }
+
+            res.send(errRes)
+        } else {
+
+            var successRes = {
+                code: 'success',
+                message: result
+            }
+
+            res.send(successRes)
+        }
+    })
+})
+
+
 // /user/cart/remove
 // remove particular product from cart of the user by prodid...
-router.delete('/remove/:userid/:prodid',(req,res)=>{
+router.delete('/remove/:userid/:prodid', (req, res) => {
 
     let query = `delete from cart where userid = '${req.params.userid}' and prodid = '${req.params.prodid}'`;
 
     connection.query(query, (err, result) => {
-        if(err){
+        if (err) {
             console.log(err.message)
             var errRes = {
                 code: err.code,
-                message: err.message 
+                message: err.message
             }
 
             res.send(errRes)
-        }else{
+        } else {
 
             var successRes = {
                 code: 'success',
@@ -105,7 +133,7 @@ router.delete('/remove/:userid/:prodid',(req,res)=>{
 
 // /user/cart/prod-quantity-incre
 // increment prod quantity in users cart...
-router.put('/prod-quantity-incre/',(req,res)=>{
+router.put('/prod-quantity-incre/', (req, res) => {
 
     // :userid/:prodid
 
@@ -113,20 +141,20 @@ router.put('/prod-quantity-incre/',(req,res)=>{
     // console.log(req.body.prodId) 
 
     let userId = req.body.userId
-    let prodId = req.body.prodId 
+    let prodId = req.body.prodId
 
     let query = `UPDATE cart SET quantity = quantity + 1 WHERE userid = '${userId}' and prodid = '${prodId}'`;
 
     connection.query(query, (err, result) => {
-        if(err){
+        if (err) {
             console.log(err.message)
             var errRes = {
                 code: err.code,
-                message: err.message 
+                message: err.message
             }
 
             res.send(errRes)
-        }else{
+        } else {
 
             var successRes = {
                 code: 'success',
@@ -140,23 +168,23 @@ router.put('/prod-quantity-incre/',(req,res)=>{
 
 // /user/cart/prod-quantity-decre
 // decrement prod quantity in users cart...
-router.put('/prod-quantity-decre/',(req,res)=>{
+router.put('/prod-quantity-decre/', (req, res) => {
 
     let userId = req.body.userId
-    let prodId = req.body.prodId 
+    let prodId = req.body.prodId
 
     let query = `UPDATE cart SET quantity = quantity - 1 WHERE userid = '${userId}' and prodid = '${prodId}'`;
 
     connection.query(query, (err, result) => {
-        if(err){
+        if (err) {
             console.log(err.message)
             var errRes = {
                 code: err.code,
-                message: err.message 
+                message: err.message
             }
 
             res.send(errRes)
-        }else{
+        } else {
 
             var successRes = {
                 code: 'success',

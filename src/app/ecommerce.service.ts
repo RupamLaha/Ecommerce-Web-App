@@ -259,12 +259,24 @@ export class EcommerceService {
     // return this.usersArr[userIndex].wishlist
   }
 
+  checkForParticularProdInWishList(userId: any, prodId: any): Observable<any>{
+
+    return this.http.get(`${this.apiURL}/user/wishlist/${userId}/${prodId}`)
+  
+  }
+
 
   getCartProducts(data: any): Observable<any>{
 
     console.log({FormData: data});
 
     return this.http.get(`${this.apiURL}/user/cart/${data}`)
+  }
+
+  checkIfProdIsAlreadyInCart(userid : any, prodid : any): Observable<any>{
+
+    return this.http.get(`${this.apiURL}/user/cart/check/${userid}/${prodid}`)
+
   }
 
   addProdToCart(data: any): Observable<any>{

@@ -10,13 +10,15 @@ import { EcommerceService } from 'src/app/ecommerce.service';
 })
 export class UserProductDetailComponent implements OnInit {
 
+  userId = localStorage.getItem('id')
+
   alreadyWishlistBtn = true
 
   productId: string | null = null
 
   product: Products | null = null
 
-  userWishlistArr: Products[] = []
+  // userWishlistArr: Products[] = []
 
   wishlistBtnShow: boolean = true
 
@@ -47,6 +49,8 @@ export class UserProductDetailComponent implements OnInit {
 
         this.product = new Products(id, name, price, description)
 
+        this.checkProdIfInWishlist()
+
       })
     }
   }
@@ -57,9 +61,16 @@ export class UserProductDetailComponent implements OnInit {
 
     let prodId = btn.id
     let userId = localStorage.getItem("id")
-    this.ecomService.addProdToCart({userId: userId ,prodId: prodId}).subscribe((response)=>{
-      console.log(response)
-      this.router.navigate(['/user-cart'])
+
+    this.ecomService.checkIfProdIsAlreadyInCart(userId, prodId).subscribe((response)=>{
+      if(response.message.length > 0){
+        this.router.navigate(['/user-cart'])
+      }else{
+        this.ecomService.addProdToCart({userId: userId ,prodId: prodId}).subscribe((response)=>{
+        console.log(response)
+        this.router.navigate(['/user-cart'])
+        })
+      }
     })
 
   }
@@ -79,6 +90,16 @@ export class UserProductDetailComponent implements OnInit {
   }
 
   checkProdIfInWishlist() {
+
+    this.ecomService.checkForParticularProdInWishList(this.userId, this.productId).subscribe((response)=>{
+      console.log({prodIsPresentOrNot: response})
+      if(response.message.length > 0){
+        this.wishlistBtnShow = false
+      }else{
+        this.wishlistBtnShow = true
+      }
+    })
+
 
     // let tempId = this.userWishlistArr.findIndex(p => p.id === this.productId)
 

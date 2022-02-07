@@ -59,10 +59,22 @@ export class UserWishlistComponent implements OnInit {
 
     let prodId = btn.id
     let userId = localStorage.getItem("id")
-    this.ecomService.addProdToCart({userId: userId ,prodId: prodId}).subscribe((response)=>{
-      console.log(response)
-      this.router.navigate(['/user-cart'])
+
+    this.ecomService.checkIfProdIsAlreadyInCart(userId, prodId).subscribe((response)=>{
+      if(response.message.length > 0){
+        this.router.navigate(['/user-cart'])
+      }else{
+        this.ecomService.addProdToCart({userId: userId ,prodId: prodId}).subscribe((response)=>{
+        console.log(response)
+        this.router.navigate(['/user-cart'])
+        })
+      }
     })
+
+    // this.ecomService.addProdToCart({userId: userId ,prodId: prodId}).subscribe((response)=>{
+    //   console.log(response)
+    //   this.router.navigate(['/user-cart'])
+    // })
   }
 
   removeFormWishClicked(btn: HTMLButtonElement) {

@@ -44,6 +44,34 @@ router.get('/:id',(req,res)=>{
     })
 })
 
+// /user/wishlist
+// check particular product is present is users wishlist...
+router.get('/:userid/:prodid',(req,res)=>{
+
+    let query = `select * from wishlist where userid = '${req.params.userid}' and prodid = '${req.params.prodid}'`;
+
+    connection.query(query, (err, result) => {
+        if(err){
+            console.log(err.message)
+            var errRes = {
+                code: err.code,
+                message: err.message 
+            }
+
+            res.send(errRes)
+        }else{
+
+            var successRes = {
+                code: 'success',
+                message: result
+            }
+
+            res.send(successRes)
+        }
+    })
+})
+
+
 // /user/wishlist/add
 // add particular product into wishlist of the user by prodid...
 router.post('/add/',(req,res)=>{
