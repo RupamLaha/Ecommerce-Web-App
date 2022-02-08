@@ -11,13 +11,6 @@ import { EcommerceService } from 'src/app/ecommerce.service';
 })
 export class UserCartComponent implements OnInit {
 
-  // cartArr = [
-  //   {name: "Oppo a", price: "$12", description: "Some text about the mobile.."},
-  //   {name: "Oppo b", price: "$13", description: "Some text about the mobile.."},
-  //   {name: "Oppo c", price: "$14", description: "Some text about the mobile.."},
-  //   {name: "Oppo d", price: "$15", description: "Some text about the mobile.."}
-  // ]
-
   // currUser: User | null = null
 
   cartArr: Cart[] = []
@@ -35,13 +28,6 @@ export class UserCartComponent implements OnInit {
   constructor(private ecomService: EcommerceService) { }
 
   ngOnInit(): void {
-    // this.currUser = this.ecomService.getUser();
-    // let price = this.ecomService.totalCartPrice()
-    // this.subTotal = price.subTotal
-    // this.allTotal = price.allTotal
-    // this.delivaryChrg = price.deliveryChrg
-    // this.cartItemCount = this.currUser.cart.length
-
 
     this.cartArr = []
 

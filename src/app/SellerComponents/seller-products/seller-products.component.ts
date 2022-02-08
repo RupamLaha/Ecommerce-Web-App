@@ -17,7 +17,6 @@ export class SellerProductsComponent implements OnInit {
   constructor(private ecomService: EcommerceService, private router: Router) { }
 
   ngOnInit(): void {
-    // this.adminProductsArr = this.ecomService.getProducts();
 
     this.adminProductsArr = []
 

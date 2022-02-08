@@ -19,8 +19,6 @@ export class UserWishlistComponent implements OnInit {
   constructor(private ecomService: EcommerceService, private router: Router) { }
 
   ngOnInit(): void {
-    
-    // this.wishListArr = this.ecomService.getWishlistArr()
 
     this.wishListArr = []
 
@@ -46,16 +44,9 @@ export class UserWishlistComponent implements OnInit {
       }
     })
 
-    // if (this.wishListArr.length === 0) {
-    //   this.showEmptyIcon = true
-    // } else {
-    //   this.showEmptyIcon = false
-    // }
   }
 
   addToCartClicked(btn: HTMLButtonElement) {
-    // this.ecomService.addProdToCart(btn.id)
-    // this.router.navigate(['/user-cart'])
 
     let prodId = btn.id
     let userId = localStorage.getItem("id")
@@ -71,10 +62,6 @@ export class UserWishlistComponent implements OnInit {
       }
     })
 
-    // this.ecomService.addProdToCart({userId: userId ,prodId: prodId}).subscribe((response)=>{
-    //   console.log(response)
-    //   this.router.navigate(['/user-cart'])
-    // })
   }
 
   removeFormWishClicked(btn: HTMLButtonElement) {

@@ -28,8 +28,6 @@ export class SellerOrdersComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // id, name, price, description, orderStatus, quantity, buyerName, buyerEmail, buyerAdd
-
     this.adminOderBook = []
 
     this.ecomService.getAdminOrderBook().subscribe((response)=>{
@@ -59,23 +57,11 @@ export class SellerOrdersComponent implements OnInit {
       }
     })
 
-    // if (this.adminOderBook.length === 0) {
-    //   this.showEmptyIcon = true
-    // } else {
-    //   this.showEmptyIcon = false
-    // }
-
   }
 
   submit(orderId: any) {
-    // console.log("Submitted")
-    // console.log(this.contactForm.value)
 
     let status = this.contactForm.get('orderStatus')?.value
-
-    // console.log(this.contactForm.get('orderStatus')?.value)
-
-    // console.log(status)
 
     this.ecomService.adminUpdateOrderStatus(orderId, status).subscribe((response)=>{
       console.log(response)

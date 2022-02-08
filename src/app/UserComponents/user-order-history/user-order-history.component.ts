@@ -41,7 +41,7 @@ export class UserOrderHistoryComponent implements OnInit {
         this.showEmptyIcon = false
 
       }else{
-          this.showEmptyIcon = false
+          this.showEmptyIcon = true
       }
     })
   }

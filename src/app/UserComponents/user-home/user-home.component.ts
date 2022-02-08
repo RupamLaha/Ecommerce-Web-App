@@ -10,27 +10,12 @@ import { EcommerceService } from 'src/app/ecommerce.service';
 })
 export class UserHomeComponent implements OnInit {
 
-  // productsArr = [
-  //   {name: "Oppo a", price: "$12", description: "Some text about the mobile.."},
-  //   {name: "Oppo b", price: "$13", description: "Some text about the mobile.."},
-  //   {name: "Oppo c", price: "$14", description: "Some text about the mobile.."},
-  //   {name: "Oppo d", price: "$15", description: "Some text about the mobile.."},
-  //   {name: "Oppo a", price: "$12", description: "Some text about the mobile.."},
-  //   {name: "Oppo b", price: "$13", description: "Some text about the mobile.."},
-  //   {name: "Oppo c", price: "$14", description: "Some text about the mobile.."},
-  //   {name: "Oppo d", price: "$15", description: "Some text about the mobile.."}
-  // ]
-
   productsArr: Products[] = []
 
   constructor(private ecomService: EcommerceService, private router: Router) { }
 
   ngOnInit(): void {
-    // this.productsArr = this.ecomService.getProducts();
-    // this.ecomService.getUserProducts().subscribe((response)=>{
-    //   console.log(response)
-    // })
-
+    
     this.productsArr = []
 
     this.ecomService.getUserProducts().subscribe((response)=>{

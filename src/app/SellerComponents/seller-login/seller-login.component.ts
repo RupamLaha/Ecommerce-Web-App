@@ -25,14 +25,7 @@ export class SellerLoginComponent implements OnInit {
   }
 
   onLogIn() {
-  //   let email = this.loginForm.get('email')?.value
-  //   let pass = this.loginForm.get('password')?.value
-
-  //   if (this.ecomService.adminLogin(email, pass)) {
-  //     this.router.navigate(['seller-orders'])
-  //   }
-  // }
-
+    
   this.ecomService.adminLogin(this.loginForm.value).subscribe((response) => {
     console.log(response)
     console.log(response.message.length)

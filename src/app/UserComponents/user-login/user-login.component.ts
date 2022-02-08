@@ -25,11 +25,6 @@ export class UserLoginComponent implements OnInit {
   }
 
   onSubmit() {
-    // let email = this.loginForm.get('email')?.value;
-    // let pass = this.loginForm.get('password')?.value;
-
-    // console.log(email);
-    // console.log(pass);
 
     this.ecomService.loginVerify(this.loginForm.value).subscribe((response)=>{
       console.log(response)
@@ -49,9 +44,6 @@ export class UserLoginComponent implements OnInit {
       }
     })
 
-    // if (temp) {
-    //   this.router.navigate(['/user-home']);
-    // }
   }
 
 }

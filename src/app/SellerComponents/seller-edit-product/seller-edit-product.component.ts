@@ -60,7 +60,6 @@ export class SellerEditProductComponent implements OnInit {
   }
 
   onSubmit() {
-    // console.log('Subit button clicked');
 
     let id = this.newProductAddingForm.get('id')?.value
     let name = this.newProductAddingForm.get('name')?.value

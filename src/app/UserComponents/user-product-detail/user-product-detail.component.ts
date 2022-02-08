@@ -26,19 +26,10 @@ export class UserProductDetailComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // this.userWishlistArr = this.ecomService.getWishlistArr()
-
-    // this.activatedRoute.paramMap.subscribe((param: ParamMap) =>
-    // {
-    //   this.productId = param.get('id')
-    // })
-
     this.productId = this.activatedRoute.snapshot.paramMap.get('id')
 
-    // this.checkProdIfInWishlist()
-
     if (this.productId !== null) {
-      // this.product = this.ecomService.getProduct(this.productId)
+      
       this.ecomService.getProduct(this.productId).subscribe((respond)=>{
         console.log(respond)
 
@@ -56,8 +47,6 @@ export class UserProductDetailComponent implements OnInit {
   }
 
   addToCartClicked(btn: HTMLButtonElement) {
-    // this.ecomService.addProdToCart(btn.id)
-    // this.router.navigate(['/user-cart'])
 
     let prodId = btn.id
     let userId = localStorage.getItem("id")
@@ -76,9 +65,6 @@ export class UserProductDetailComponent implements OnInit {
   }
 
   addToWishClicked(btn: HTMLButtonElement) {
-    // this.ecomService.addToWishlist(btn.id)
-    // this.ngOnInit()
-    // this.router.navigate(['/user-wishlist'])
 
     let prodId = btn.id
     let userId = localStorage.getItem("id")
@@ -99,15 +85,6 @@ export class UserProductDetailComponent implements OnInit {
         this.wishlistBtnShow = true
       }
     })
-
-
-    // let tempId = this.userWishlistArr.findIndex(p => p.id === this.productId)
-
-    // if (tempId == -1) {
-    //   this.wishlistBtnShow = true
-    // } else {
-    //   this.wishlistBtnShow = false
-    // }
 
   }
 

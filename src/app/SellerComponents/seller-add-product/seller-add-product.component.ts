@@ -31,20 +31,6 @@ export class SellerAddProductComponent implements OnInit {
 
   onSubmit() {
     if (this.newProductAddingForm.valid) {
-      // console.log(this.newProductAddingForm.value);
-      // var tempProd: Products = this.newProductAddingForm.value;
-      // this.ecomService.adminAddProducts(tempProd.id, tempProd.name, tempProd.price, tempProd.description);
-
-      // this.newProductAddingForm.setValue({
-      //   id: "",
-      //   name: "",
-      //   price: null,
-      //   description: ""
-      // })
-
-      // this.newProductAddingForm.markAsUntouched()
-
-      // this.router.navigate(['/seller-add-product']);
 
       this.ecomService.adminAddProducts(this.newProductAddingForm.value).subscribe((response)=>{
         console.log(response)
