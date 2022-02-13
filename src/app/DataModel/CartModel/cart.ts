@@ -2,9 +2,10 @@ import { Products } from "../products";
 
 export class Cart {
     product: Products
-    count: number = 1
+    count: number
 
-    constructor(product: Products){
+    constructor(product: Products, cnt: number){
         this.product = product
+        this.count = cnt
     }
 }

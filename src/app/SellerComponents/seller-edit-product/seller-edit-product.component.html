@@ -5,8 +5,8 @@
       <div class="col">
 
 <p>
-    <ngb-alert [dismissible]="true" type='success' [ngStyle]="{'display':displayStyle}">
-        <strong>Product successfully edited.</strong>
+    <ngb-alert [dismissible]="true" [type]='alertType' [ngStyle]="{'display':displayStyle}">
+        <strong>{{errMsg}}</strong>
     </ngb-alert>
 </p>
 

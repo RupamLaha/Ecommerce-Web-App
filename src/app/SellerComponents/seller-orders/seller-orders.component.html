@@ -30,34 +30,34 @@
                                 <h2>{{prod.name}}</h2>
                             </a>
                             <a>
-                                <p class="price"><b>Price: Rs.</b>{{prod.price}}</p>
+                                <p class="price"><b>Price: Rs. </b>{{prod.price}}</p>
                             </a>
                             <a>
-                                <p><b>Quantity:</b>{{prod.quantity}}</p>
+                                <p><b>Quantity: </b>{{prod.quantity}}</p>
                             </a>
                             <!-- <a>
                                 <p><b>Ordered On:</b> 1 Jan 2020</p>
                             </a> -->
                             <a>
-                                <p><b>Buyer Name:</b>{{prod.buyerName}}</p>
+                                <p><b>Buyer Name: </b>{{prod.buyerName}}</p>
                             </a>
                             <a>
-                                <p><b>Buyer Email:</b>{{prod.buyerEmail}}</p>
+                                <p><b>Buyer Email: </b>{{prod.buyerEmail}}</p>
                             </a>
                             <a>
-                                <p><b>Buyer Address:</b>{{prod.buyerAddress}}</p>
+                                <p><b>Buyer Address: </b>{{prod.buyerAddress}}</p>
                             </a>
                         </td>
                         <td style="width: 20%">
                             <p>Order Status</p>
 
-                            <form [formGroup]="contactForm" (ngSubmit)="submit(prod.buyerEmail, prod.id)">
+                            <form [formGroup]="contactForm" (ngSubmit)="submit(prod.orderId)">
 
                                 <p>
                                     <select formControlName="orderStatus">
                                         <option ngValue="null" hidden>Select</option>
-                                        <option ngValue="Pending">Pending</option>
-                                        <option ngValue="Shipped">Shipped</option>
+                                        <option ngValue="0">Pending</option>
+                                        <option ngValue="1">Shipped</option>
                                     </select>
 
                                     <button type="submit">Submit</button>
@@ -65,7 +65,7 @@
 
                             </form>
 
-                            <p [style.color]="prod.orderStatus == 'Pending' ? 'red' : 'green'">{{prod.orderStatus}}</p>
+                            <p [style.color]="prod.orderStatus == 0 ? 'red' : 'green'">{{(prod.orderStatus == 0) ? "Pending" : "Shipped"}}</p>
 
                         </td>
                     </tr>

@@ -15,7 +15,7 @@
             <a [routerLink]="['/user-product-detail', prod.id]" [id]="prod.id">
                 <p>{{prod.description}}</p>
             </a>
-            <p><button routerLink="/user-cart" [id]="prod.id" #addToCart (click)="onClick(addToCart)">Add to
+            <p><button [id]="prod.id" #addToCart (click)="onClick(addToCart)">Add to
                     Cart</button></p>
         </div>
     </div>

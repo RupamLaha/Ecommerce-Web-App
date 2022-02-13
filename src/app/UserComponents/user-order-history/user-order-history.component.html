@@ -34,7 +34,8 @@
                             <p>{{prod.description}}</p>
                         </a>
                         <p>Quantity: {{prod.quantity}}</p>
-                        <p>Order Status: {{prod.orderStatus}}</p>
+                        Order Status: 
+                        <p [style.color]="prod.orderStatus == 0 ? 'red' : 'green'">{{(prod.orderStatus == 0) ? 'Pending' : 'Shipped'}}</p>
                     </div>
                 </div>
             </td>

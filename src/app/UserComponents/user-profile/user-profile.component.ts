@@ -8,6 +8,8 @@ import { EcommerceService } from 'src/app/ecommerce.service';
 })
 export class UserProfileComponent implements OnInit {
 
+  userId = localStorage.getItem('id')
+
   name: string = ""
   email: string = ""
   address: string = ""
@@ -15,9 +17,16 @@ export class UserProfileComponent implements OnInit {
   constructor(private ecoService: EcommerceService) { }
 
   ngOnInit(): void {
-    this.name = this.ecoService.getUser().name
-    this.email = this.ecoService.getUser().email
-    this.address = this.ecoService.getUser().address
+
+    this.ecoService.userShowProfile(this.userId).subscribe((response)=>{
+
+      console.log(response)
+
+      this.name = response.message[0].name
+      this.email = response.message[0].email
+      this.address = response.message[0].address
+
+    })
   }
 
   onLogOut() {

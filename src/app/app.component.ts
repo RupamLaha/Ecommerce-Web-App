@@ -37,18 +37,18 @@ export class AppComponent implements OnInit{
       }
 
 
-      let tempAdminEmail = localStorage.getItem("adminEmail");
+      let tempAdminRole = localStorage.getItem("adminRole");
 
-      if(tempAdminEmail === "laha@gmail.com"){
+      if(tempAdminRole == "admin"){
         this.showAdminNavOptions = true
       }else{
         this.showAdminNavOptions = false
       }
 
       //conditions to whether to show the user navbar options...
-      let tempUserEmail = localStorage.getItem("email");
+      let tempUserRole = localStorage.getItem("role");
 
-      if(tempUserEmail !== null){
+      if(tempUserRole == "user"){
         this.showUserNavOptions = true
       }else{
         this.showUserNavOptions = false

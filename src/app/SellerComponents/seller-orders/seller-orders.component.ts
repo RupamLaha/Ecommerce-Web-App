@@ -28,25 +28,45 @@ export class SellerOrdersComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.adminOderBook = this.ecomService.getAdminOrderBook()
+    this.adminOderBook = []
 
-    if (this.adminOderBook.length === 0) {
-      this.showEmptyIcon = true
-    } else {
-      this.showEmptyIcon = false
-    }
+    this.ecomService.getAdminOrderBook().subscribe((response)=>{
+      console.log(response)
+
+      if(response.message.length > 0){
+        for(let prod of response.message){
+
+          let orderId = prod.orderId
+          let id = prod.prodid
+          let name = prod.pname
+          let price = prod.price
+          let description = prod.description
+          let orderStatus = prod.orderstatus
+          let quantity = prod.quantity
+          let buyerName = prod.uname
+          let buyerEmail = prod.email
+          let buyerAdd = prod.address
+  
+          let orderProd = new AdminOrderBookModel(id, name, price, description, orderStatus, quantity, buyerName, buyerEmail, buyerAdd, orderId)
+  
+          this.adminOderBook.push(orderProd)
+        }
+          this.showEmptyIcon = false
+      }else{
+        this.showEmptyIcon = true
+      }
+    })
 
   }
 
-  submit(buyeremail: string, prodId: string) {
-    console.log("Submitted")
-    console.log(this.contactForm.value)
+  submit(orderId: any) {
 
-    let status = this.contactForm.get('orderStatus')?.value.toString()
+    let status = this.contactForm.get('orderStatus')?.value
 
-    console.log(status)
-
-    this.ecomService.adminUpdateOrderStatus(buyeremail, status, prodId)
+    this.ecomService.adminUpdateOrderStatus(orderId, status).subscribe((response)=>{
+      console.log(response)
+      this.ngOnInit()
+    })
 
   }
 }

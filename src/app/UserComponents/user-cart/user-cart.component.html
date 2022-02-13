@@ -15,7 +15,7 @@
 
           <tr>
             <td>
-              <div class="row prodRow" *ngFor="let prod of currUser?.cart">
+              <div class="row prodRow" *ngFor="let prod of cartArr">
                 <div class="col-md-3 col-12 d-flex justify-content-center">
                   <a [routerLink]="['/user-product-detail', prod.product.id]"><img src="assets/images/mobile.jpg"
                       alt="Denim Jeans" style="width:100%"></a>

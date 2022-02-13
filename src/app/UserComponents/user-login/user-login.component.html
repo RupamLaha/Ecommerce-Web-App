@@ -10,6 +10,10 @@
     <h2>Login</h2>
   </div>
 
+  <div class="alert alert-danger" *ngIf="err != null" role="alert">
+    {{err}}
+  </div>
+  
   <div class="form-group">
     <label for="exampleInputEmail1"><b>Email</b></label>
     <input [class.is-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
