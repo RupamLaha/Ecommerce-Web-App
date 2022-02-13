@@ -4,7 +4,8 @@ const mysql = require('mysql2')
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '143@india',
+    //for security reasons removing pass...
+    password: '',
     database: 'wowshop'
 })
 
